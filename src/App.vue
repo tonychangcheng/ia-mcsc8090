@@ -1,32 +1,25 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+    <div id="app">
+        <router-link to="/">Home Page</router-link>
+        <router-link to="/createroom">Create Room</router-link>
+        <br />
+        <router-view />
+    </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+    color: rgba(255, 255, 255, 1);
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+    margin: 0;
+    padding: 0;
+    background: rgba(13, 25, 31, 1);
+}
+input {
+    background: rgba(255, 255, 255, 0.1);
+}
+button {
+    background: rgba(255, 255, 255, 0.1);
 }
 </style>
