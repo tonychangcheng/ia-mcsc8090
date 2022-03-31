@@ -41,8 +41,8 @@ export default {
                 this.info = 'User ID cannot be empty!'
                 return
             }
-            if (this.validUserPsw = 'Password cannot be empty!')
-                this.info = ''
+            if (this.validUserPsw === '')
+                this.info = 'Password cannot be empty!'
             //将validRoomId和validRoomPsw发送到后端
             //是否存在
             //console.log(`${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`)
@@ -51,7 +51,16 @@ export default {
                 url: `${this.server}/join/${this.validRoomId}/${this.validUserId}/${this.validUserPsw}/`,
             })
                 .then((response) => {
-                    console.log(response.data)
+                    let tReData = response.data
+                    if (tReData === 'createdUser') {
+                        this.info = 'Successfully Create User'
+                        return
+                    }
+                    if (tReData === 'userExistAndValid') {
+                        this.info = 'Successfully Login'
+                        return
+                    }
+                    this.info = tReData
                 })
         },
         checkRoomId() {
@@ -101,6 +110,8 @@ export default {
         },
         updateRoomInfo() {
             localStorage.setItem(`roomId`, this.validRoomId)
+            localStorage.setItem(`userId`, this.validUserId)
+            localStorage.setItem(`userPsw`, this.validUserPsw)
         }
     },
     mounted: function () {
