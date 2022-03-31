@@ -2,6 +2,7 @@
     <div id="app">
         <router-link to="/">Home Page</router-link>
         <router-link to="/createroom">Create Room</router-link>
+        <router-link to="/joinroom">Join Room</router-link>
         <br />
         <router-view />
     </div>
