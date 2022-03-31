@@ -22,6 +22,7 @@ export default {
             roomPsw: 'sample',
             validRoomPsw: 'sample',
             info: '',
+            server: 'http://127.0.0.1:8000',
         }
     },
     methods: {
@@ -33,7 +34,14 @@ export default {
             this.info = ''
             //将validRoomId和validRoomPsw发送到后端
             //是否存在
-            //
+            console.log(`${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`)
+            axios({
+                method: 'get',
+                url: `${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`,
+            })
+                .then((response) => {
+                    console.log(response)
+                })
         },
         checkRoomId() {
             let flag = this.roomId.length <= 6;
