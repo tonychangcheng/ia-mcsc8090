@@ -79,10 +79,10 @@ export default {
             }
         },
         checkUserId() {
-            let flag = this.userId.length <= 6;
+            let flag = this.userId.length <= 7;
             for (let i = 0; i < this.userId.length && flag; i++) {
                 let c = this.userId.charAt(i)
-                if (!(('0' <= c && c <= '9') || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))) {
+                if (!(('0' <= c && c <= '9') || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || (c === '_'))) {
                     flag = false;
                 }
             }
