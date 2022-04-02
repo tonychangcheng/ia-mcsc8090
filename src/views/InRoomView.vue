@@ -16,6 +16,19 @@
         <div>{{ userRole }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
         <div v-for="user in usersUserSee">{{ user.userId }}</div>
+        <div class="subtitle">Quest</div>
+        <div v-for="user in users">
+            <label>
+                <input
+                    type="checkbox"
+                    :id="user.userId"
+                    :value="user.userId"
+                    v-model="selectedUsers"
+                />
+                {{ user.userId }}
+            </label>
+        </div>
+        <button v-on:click="doQuest">Do Quest</button>
     </div>
 </template>
 <script>
@@ -33,6 +46,7 @@ export default {
             roleUserSee: '',
             server: 'http://127.0.0.1:8000',
             usersUserSee: [],
+            selectedUsers: [],
         }
     },
     computed: {
@@ -51,7 +65,9 @@ export default {
         }
     },
     methods: {
+        doQuest() {
 
+        }
     },
     mounted: function () {
         this.roomId = localStorage.getItem('roomId')
@@ -101,3 +117,8 @@ export default {
     }
 }
 </script>
+<style>
+label {
+    width: 100%;
+}
+</style>

@@ -52,6 +52,7 @@ export default {
             })
                 .then((response) => {
                     console.log(response.data)
+                    this.$router.push({ path: '/inroom' })
                 })
         },
     },
@@ -84,7 +85,7 @@ export default {
                         startRoomButton.classList.remove('disabledButton')
                     }
                 })
-        }, 4000)
+        }, 1000)
     }
 }
 </script>

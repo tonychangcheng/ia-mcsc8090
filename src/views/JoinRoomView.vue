@@ -68,11 +68,11 @@ export default {
                     })
                         .then((response) => {
                             let tReData = response.data
-                            console.log(tReData)
+                            //console.log(tReData)
                             if (tReData === 'waiting') {
                                 this.$router.push({ path: '/waitingroom' })
                             } else {
-
+                                this.$router.push({ path: '/inroom' })
                             }
                         })
                 })

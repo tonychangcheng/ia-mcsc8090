@@ -4,9 +4,12 @@
         <br />
         <router-link to="/">Home Page|</router-link>
         <router-link to="/createroom">Create Room|</router-link>
-        <router-link to="/joinroom">Join Room|</router-link>
+        <router-link to="/joinroom">Join Room</router-link>
+        <!--
         <router-link to="/waitingroom">Waiting Room|</router-link>
         <router-link to="/inroom">In Room</router-link>
+        -->
+
         <br />
         <router-view />
     </div>
