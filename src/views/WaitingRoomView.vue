@@ -12,6 +12,7 @@
         <div>{{ template }}</div>
         <div class="subtitle">Team Building Phase</div>
         <div>{{ teamBuildingPhase }}</div>
+        <button id="startGameButton" v-on:click="startGame" class="disabledButton">Start Game</button>
     </div>
 </template>
 <script>
@@ -36,13 +37,16 @@ export default {
             return templates[this.userCount]
         },
         teamBuildingPhase: function () {
-            if (this.userCount < 5 || this.userCount > 10) return ''
+            if (this.userCount < 5) return 'Too less users'
+            if (this.userCount > 10) return 'Too many users'
             let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
             return teamBuildingPhases[this.userCount]
         }
     },
-    method: {
+    methods: {
+        startGame() {
 
+        },
     },
     mounted: function () {
         this.roomId = localStorage.getItem('roomId')
@@ -50,7 +54,7 @@ export default {
         this.userPsw = localStorage.getItem('userPsw')
         for (let i = 1; i <= 99999; i++)window.clearInterval(i)
 
-        setInterval(() => {
+        setInterval(() => {//update room info
             axios({
                 method: 'get',
                 url: `${this.server}/wait/${this.roomId}/${this.userId}/${this.userPsw}/`,
@@ -65,6 +69,13 @@ export default {
                         this.users.push({ 'userId': response.data['user' + useri] })
                     }
                     //console.log(this.users)
+
+                    let startRoomButton = document.getElementById('startGameButton')
+                    if (this.userCount < 5 || this.userCount > 10) {
+                        startRoomButton.classList.add('disabledButton')
+                    } else {
+                        startRoomButton.classList.remove('disabledButton')
+                    }
                 })
         }, 1000)
     }

@@ -31,4 +31,8 @@ button {
     font-style: italic;
     font-weight: bold;
 }
+.disabledButton {
+    pointer-events: none;
+    text-decoration: line-through;
+}
 </style>

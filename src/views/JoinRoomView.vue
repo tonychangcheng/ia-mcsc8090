@@ -54,10 +54,12 @@ export default {
                     let tReData = response.data
                     if (tReData === 'createdUser') {
                         this.info = 'Successfully Create User'
+                        this.$router.push({ path: 'waitingroom' })
                         return
                     }
                     if (tReData === 'userExistAndValid') {
                         this.info = 'Successfully Login'
+                        this.$router.push({ path: 'waitingroom' })
                         return
                     }
                     this.info = tReData
@@ -115,6 +117,7 @@ export default {
         }
     },
     mounted: function () {
+        for (let i = 1; i <= 99999; i++)window.clearInterval(i)
         if (!(localStorage.getItem('roomId') === null)) {
             let tempRoomId = localStorage.getItem('roomId');
             this.roomId = tempRoomId;
