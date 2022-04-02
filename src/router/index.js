@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue'
 import CreateRoomView from '../views/CreateRoomView.vue'
 import JoinRoomView from '../views/JoinRoomView.vue'
 import WaitingRoomView from '../views/WaitingRoomView.vue'
+import InRoomView from '../views/InRoomView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,6 +36,11 @@ const routes = [
         path: '/waitingroom',
         name: 'waitingroom',
         component: WaitingRoomView,
+    },
+    {
+        path: '/inroom',
+        name: 'inroom',
+        component: InRoomView,
     }
 ]
 

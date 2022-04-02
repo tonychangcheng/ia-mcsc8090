@@ -1,4 +1,4 @@
-# goa_frontend
+# noteapp-front
 
 ## Project setup
 ```

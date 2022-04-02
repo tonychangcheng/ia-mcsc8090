@@ -7,7 +7,7 @@
         <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="User ID" />
         <br />
         <div class="subtitle">User Password</div>
-        <div class="subtitle">DO NOT USE YOUR COMMON PASSWORD</div>
+        <div>DO NOT USE YOUR COMMON PASSWORD</div>
         <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="User Password" />
         <br />
         <button v-on:click="joinRoom">Join Room</button>
