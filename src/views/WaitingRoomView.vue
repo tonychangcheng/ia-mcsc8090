@@ -33,7 +33,8 @@ export default {
         template: function () {
             if (this.userCount < 5) return 'Too less users'
             if (this.userCount > 10) return 'Too many users'
-            let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, 1 Minion of Mordred (Lady of the Lake is recommended)']
+            let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
+            //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
             return templates[this.userCount]
         },
         teamBuildingPhase: function () {
@@ -45,7 +46,13 @@ export default {
     },
     methods: {
         startGame() {
-
+            axios({
+                method: 'get',
+                url: `${this.server}/start/${this.roomId}/${this.userId}/${this.userPsw}/`
+            })
+                .then((response) => {
+                    console.log(response.data)
+                })
         },
     },
     mounted: function () {
@@ -77,7 +84,7 @@ export default {
                         startRoomButton.classList.remove('disabledButton')
                     }
                 })
-        }, 1000)
+        }, 4000)
     }
 }
 </script>

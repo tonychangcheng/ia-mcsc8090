@@ -52,17 +52,29 @@ export default {
             })
                 .then((response) => {
                     let tReData = response.data
+                    if (tReData != 'createdUser' && tReData != 'userExistAndValid') {
+                        this.info = tReData
+                        return
+                    }
                     if (tReData === 'createdUser') {
                         this.info = 'Successfully Create User'
-                        this.$router.push({ path: 'waitingroom' })
-                        return
                     }
                     if (tReData === 'userExistAndValid') {
                         this.info = 'Successfully Login'
-                        this.$router.push({ path: 'waitingroom' })
-                        return
                     }
-                    this.info = tReData
+                    axios({
+                        method: 'get',
+                        url: `${this.server}/status/${this.validRoomId}/`,
+                    })
+                        .then((response) => {
+                            let tReData = response.data
+                            console.log(tReData)
+                            if (tReData === 'waiting') {
+                                this.$router.push({ path: '/waitingroom' })
+                            } else {
+
+                            }
+                        })
                 })
         },
         checkRoomId() {
