@@ -6,17 +6,29 @@
         <div>{{ userId }}</div>
         <div class="subtitle">Number of User(s)</div>
         <div>{{ userCount }}</div>
-        <div class="subtitle">Users in the Room</div>
+        <div class="subtitle">User(s) in the Room</div>
         <div v-for="user in users">{{ user.userId }}</div>
         <div class="subtitle">Tamplate</div>
         <div>{{ template }}</div>
-        <div class="subtitle">Team Building Phase</div>
+        <div class="subtitle">Number of Quest Team Members</div>
         <div>{{ teamBuildingPhase }}</div>
         <div class="subtitle">Your Role</div>
         <div>{{ userRole }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
         <div v-for="user in usersUserSee">{{ user.userId }}</div>
-        <div class="subtitle">Quest</div>
+        <div class="subtitle">History</div>
+        <div v-for="message in messages">
+            <div class="subsubtitle">{{ message.messagetitle }}</div>
+            <div class="green">{{ message.message1users }}</div>
+            <div class="red">{{ message.message2users }}</div>
+        </div>
+        <div id="votepart" class="hidden">
+            <div class="subtitle">{{ votetitle }}</div>
+            <div>{{ votecontent }}</div>
+            <button>Yes</button>
+            <button id="nobutton" class="disabledButton">No</button>
+        </div>
+        <div class="subtitle">Quest Team Building</div>
         <div v-for="user in users">
             <label>
                 <input
@@ -47,6 +59,11 @@ export default {
             server: 'http://127.0.0.1:8000',
             usersUserSee: [],
             selectedUsers: [],
+            messages: [],
+            messagecount: 0,
+            ongoingvote: false,
+            votetitle: 'this is vote title',
+            votecontent: 'this is vote content',
         }
     },
     computed: {
@@ -67,6 +84,36 @@ export default {
     methods: {
         doQuest() {
 
+            //console.log(this.selectedUsers.length)
+            let selectedUsersJSON = ''
+            let request = {}
+            for (let useri = 0; useri < this.selectedUsers.length; useri++) {
+                request['user' + useri] = this.selectedUsers[useri]
+            }
+            selectedUsersJSON = JSON.stringify(request)
+
+            axios({
+                method: 'get',
+                url: `${this.server}/buildteam/${this.roomId}/${this.userId}/${this.userPsw}/${this.selectedUsers.length}/`,
+            })
+                .then((response) => {
+                    if (response.data === 'Start Build Team') {
+                        let t = new Date().getTime()
+                        for (let user of this.selectedUsers) {
+                            console.log(user)
+                            t += 50
+                            while (new Date().getTime() < t) { }
+                            axios({
+                                method: 'get',
+                                url: `${this.server}/addteammember/${this.roomId}/${this.userId}/${this.userPsw}/${user}/`
+                            })
+                                .then((response) => {
+                                    console.log(response.data)
+                                    console.log(response.data === this.selectedUsers.length)
+                                })
+                        }
+                    }
+                })
         }
     },
     mounted: function () {
@@ -101,6 +148,11 @@ export default {
                 this.userRole = response.data
                 let roleUserSees = { 'Merlin': 'The Evils You Know', 'Percival': 'One is Merlin, the Other is Morgana', 'Mordred': 'The Evils You Know', 'Morgana': 'The Evils You Know', 'Assassin': 'The Evils You Know', 'Loyal Servant of Arther': '', 'Oberon': '', 'Minion of Mordred': '' }
                 this.roleUserSee = roleUserSees[this.userRole]
+                //disable no button
+                let ul = this.userRole
+                if (ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') {
+                    document.getElementById('nobutton').classList.remove('disabledButton')
+                }
             })
 
         //get users user see
@@ -109,11 +161,87 @@ export default {
             url: `${this.server}/usersusersee/${this.roomId}/${this.userId}/${this.userPsw}/`,
         })
             .then((response) => {
+                this.usersUserSee = []
                 let reData = response.data
                 for (let useri = 1; useri <= reData['userCount']; useri++) {
                     this.usersUserSee.push({ 'userId': reData['user' + useri] })
                 }
             })
+
+
+        setInterval(() => {
+            //get message pull
+            axios({
+                method: 'get',
+                url: `${this.server}/messagecount/${this.roomId}/`,
+            })
+                .then((response) => {
+                    //console.log(response.data)
+                    if (this.messagecount === response.data) return
+                    this.messagecount = response.data
+                    let tempmessage = []
+                    for (let messagei = 1; messagei <= response.data; messagei++) {
+                        axios({
+                            method: 'get',
+                            url: `${this.server}/message/${this.roomId}/${this.userId}/${this.userPsw}/${messagei}/`
+                        })
+                            .then((response) => {
+                                //console.log(response.data)
+                                tempmessage.push(response.data)
+                            })
+                    }
+                    this.messages = tempmessage
+                })
+
+            //get build vote pull
+            axios({
+                method: 'get',
+                url: `${this.server}/anybuild/${this.roomId}/${this.userId}/${this.userPsw}/`,
+            })
+                .then((response) => {
+                    let votepart = document.getElementById('votepart')
+                    if (response.data) {
+                        this.votetitle = 'Team Building Proposal'
+                        axios({
+                            method: 'get',
+                            url: `${this.server}/votecontent/${this.roomId}/${this.userId}/${this.userPsw}/`
+                        })
+                            .then((response) => {
+                                if (response.data != this.votecontent) this.votecontent = response.data
+                                console.log(response.data)
+                            })
+                        this.ongoingvote = true
+                        votepart.classList.remove('hidden')
+                    } else {
+                        //get quest vote pull
+                        axios({
+                            method: 'get',
+                            url: `${this.server}/anyquest/${this.roomId}/${this.userId}/${this.userPsw}/`,
+                        })
+                            .then((response) => {
+                                let votepart = document.getElementById('votepart')
+                                if (response.data) {
+                                    this.votetitle = 'Quest Proposal'
+                                    axios({
+                                        method: 'get',
+                                        url: `${this.server}/votecontent/${this.roomId}/${this.userId}/${this.userPsw}/`
+                                    })
+                                        .then((response) => {
+                                            if (response.data != this.votecontent) this.votecontent = response.data
+                                            console.log(response.data)
+                                        })
+                                    this.ongoingvote = true
+                                    votepart.classList.remove('hidden')
+                                } else {//no vote
+                                    this.ongoingvote = false
+                                    votepart.classList.add('hidden')
+                                }
+                            })
+                    }
+                })
+
+
+        }, 1000)
     }
 }
 </script>

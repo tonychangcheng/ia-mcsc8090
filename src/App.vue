@@ -46,4 +46,17 @@ button {
     pointer-events: none;
     text-decoration: line-through;
 }
+.subsubtitle {
+    font-size: large;
+    font-style: italic;
+}
+.green {
+    color: #009fe0;
+}
+.red {
+    color: #e07600;
+}
+.hidden {
+    display: none;
+}
 </style>

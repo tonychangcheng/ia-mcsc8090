@@ -6,11 +6,11 @@
         <div>{{ userId }}</div>
         <div class="subtitle">Number of User(s)</div>
         <div>{{ userCount }}</div>
-        <div class="subtitle">Users in the Room</div>
+        <div class="subtitle">User(s) in the Room</div>
         <div v-for="user in users">{{ user.userId }}</div>
         <div class="subtitle">Tamplate</div>
         <div>{{ template }}</div>
-        <div class="subtitle">Team Building Phase</div>
+        <div class="subtitle">Number of Quest Team Members</div>
         <div>{{ teamBuildingPhase }}</div>
         <button id="startGameButton" v-on:click="startGame" class="disabledButton">Start Game</button>
     </div>
