@@ -47,7 +47,6 @@ button {
     text-decoration: line-through;
 }
 .subsubtitle {
-    font-size: large;
     font-style: italic;
 }
 .green {

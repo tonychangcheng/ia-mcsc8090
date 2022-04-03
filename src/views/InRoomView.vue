@@ -19,14 +19,17 @@
         <div class="subtitle">History</div>
         <div v-for="message in messages">
             <div class="subsubtitle">{{ message.messagetitle }}</div>
+            <div>{{ message.messageusers }}</div>
             <div class="green">{{ message.message1users }}</div>
             <div class="red">{{ message.message2users }}</div>
         </div>
         <div id="votepart" class="hidden">
             <div class="subtitle">{{ votetitle }}</div>
             <div>{{ votecontent }}</div>
-            <button>Yes</button>
-            <button id="nobutton" class="disabledButton">No</button>
+            <button v-on:click="chooseYes">Yes</button>
+            <button id="nobutton" class="disabledButton" v-on:click="chooseNo">No</button>
+            <div id="confirmchoiceinfo" class="hidden">You chose "{{ userChoice }}"</div>
+            <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">Confirm</button>
         </div>
         <div class="subtitle">Quest Team Building</div>
         <div v-for="user in users">
@@ -64,6 +67,7 @@ export default {
             ongoingvote: false,
             votetitle: 'this is vote title',
             votecontent: 'this is vote content',
+            userChoice: 'Yes',
         }
     },
     computed: {
@@ -100,7 +104,7 @@ export default {
                     if (response.data === 'Start Build Team') {
                         let t = new Date().getTime()
                         for (let user of this.selectedUsers) {
-                            console.log(user)
+                            //console.log(user)
                             t += 50
                             while (new Date().getTime() < t) { }
                             axios({
@@ -108,11 +112,38 @@ export default {
                                 url: `${this.server}/addteammember/${this.roomId}/${this.userId}/${this.userPsw}/${user}/`
                             })
                                 .then((response) => {
-                                    console.log(response.data)
-                                    console.log(response.data === this.selectedUsers.length)
+                                    //console.log(response.data)
+                                    //console.log(response.data === this.selectedUsers.length)
                                 })
                         }
                     }
+                })
+        },
+        chooseYes() {
+            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
+            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
+            confirmchoicebutton.classList.remove('hidden')
+            confirmchoiceinfo.classList.remove('hidden')
+            this.userChoice = 'yes'
+        },
+        chooseNo() {
+            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
+            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
+            confirmchoicebutton.classList.remove('hidden')
+            confirmchoiceinfo.classList.remove('hidden')
+            this.userChoice = 'no'
+        },
+        confirmChoice() {
+            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
+            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
+            confirmchoicebutton.classList.add('hidden')
+            confirmchoiceinfo.classList.add('hidden')
+            axios({
+                method: 'get',
+                url: `${this.server}/vote/${this.roomId}/${this.userId}/${this.userPsw}/${this.userChoice}`
+            })
+                .then((response) => {
+
                 })
         }
     },
@@ -180,7 +211,10 @@ export default {
                     if (this.messagecount === response.data) return
                     this.messagecount = response.data
                     let tempmessage = []
+                    let t = new Date().getTime()
                     for (let messagei = 1; messagei <= response.data; messagei++) {
+                        t += 50
+                        while (new Date().getTime() < t) { }
                         axios({
                             method: 'get',
                             url: `${this.server}/message/${this.roomId}/${this.userId}/${this.userPsw}/${messagei}/`
@@ -189,8 +223,8 @@ export default {
                                 //console.log(response.data)
                                 tempmessage.push(response.data)
                             })
+                        this.messages = tempmessage
                     }
-                    this.messages = tempmessage
                 })
 
             //get build vote pull
@@ -200,7 +234,7 @@ export default {
             })
                 .then((response) => {
                     let votepart = document.getElementById('votepart')
-                    if (response.data) {
+                    if (response.data === 'True') {
                         this.votetitle = 'Team Building Proposal'
                         axios({
                             method: 'get',
@@ -220,7 +254,7 @@ export default {
                         })
                             .then((response) => {
                                 let votepart = document.getElementById('votepart')
-                                if (response.data) {
+                                if (response.data === 'True') {
                                     this.votetitle = 'Quest Proposal'
                                     axios({
                                         method: 'get',
@@ -228,7 +262,7 @@ export default {
                                     })
                                         .then((response) => {
                                             if (response.data != this.votecontent) this.votecontent = response.data
-                                            console.log(response.data)
+                                            //console.log(response.data)
                                         })
                                     this.ongoingvote = true
                                     votepart.classList.remove('hidden')
