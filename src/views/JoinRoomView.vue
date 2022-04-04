@@ -1,18 +1,25 @@
 <template>
     <div>
-        <div class="subtitle">Room ID</div>
-        <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
-        <br />
-        <div class="subtitle">User ID</div>
-        <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="User ID" />
-        <br />
-        <div class="subtitle">User Password</div>
-        <div>DO NOT USE YOUR COMMON PASSWORD</div>
-        <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="User Password" />
-        <br />
-        <button v-on:click="joinRoom">Join Room</button>
-        <br />
-        <div>{{ info }}</div>
+        <div class="container">
+            <div class="subtitle">Room ID</div>
+            <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
+            <br />
+            <div class="subtitle">User ID</div>
+            <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="User ID" />
+            <br />
+            <div class="subtitle">User Password</div>
+            <div>DO NOT USE YOUR COMMON PASSWORD</div>
+            <input
+                v-on:input="checkUserPsw"
+                v-model="userPsw"
+                type="text"
+                placeholder="User Password"
+            />
+            <br />
+            <button v-on:click="joinRoom">Join Room</button>
+            <br />
+            <div>{{ info }}</div>
+        </div>
     </div>
 </template>
 <script>

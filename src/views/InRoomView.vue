@@ -1,29 +1,39 @@
 <template>
     <div>
-        <div class="subtitle">Room ID</div>
-        <div>{{ roomId }}</div>
-        <div class="subtitle">Your User ID</div>
-        <div>{{ userId }}</div>
-        <div class="subtitle">Number of User(s)</div>
-        <div>{{ userCount }}</div>
+        <div class="container">
+            <div class="subtitle">Match Info</div>
+            <div class>Room ID: {{ roomId }}</div>
+            <div class>Your User ID: {{ userId }}</div>
+            <div class>Number of User(s): {{ userCount }}</div>
+            <!--
         <div class="subtitle">User(s) in the Room</div>
         <div v-for="user in users">{{ user.userId }}</div>
-        <div class="subtitle">Tamplate</div>
-        <div>{{ template }}</div>
-        <div class="subtitle">Number of Quest Team Members</div>
-        <div>{{ teamBuildingPhase }}</div>
-        <div class="subtitle">Your Role</div>
-        <div>{{ userRole }}</div>
-        <div class="subtitle">{{ roleUserSee }}</div>
-        <div v-for="user in usersUserSee">{{ user.userId }}</div>
-        <div class="subtitle">History</div>
-        <div v-for="message in messages">
-            <div class="subsubtitle">{{ message.messagetitle }}</div>
-            <div>{{ message.messageusers }}</div>
-            <div class="green">{{ message.message1users }}</div>
-            <div class="red">{{ message.message2users }}</div>
+            -->
+            <div class="subtitle">Tamplate</div>
+            <div>{{ template }}</div>
+            <div class="subtitle">Number of Quest Team Members</div>
+            <div>{{ teamBuildingPhase }}</div>
         </div>
-        <div id="votepart" class="hidden">
+
+        <div class="container">
+            <div class="subtitle">Your Role</div>
+            <div>{{ userRole }}</div>
+            <div class="subtitle">{{ roleUserSee }}</div>
+            <div v-for="user in usersUserSee">{{ user.userId }}</div>
+        </div>
+
+        <div class="container">
+            <div class="subtitle">History</div>
+            <div v-for="message in messages">
+                <br />
+                <div class="subsubtitle">{{ message.messagetitle }}</div>
+                <div>{{ message.messageusers }}</div>
+                <div class="green">{{ message.message1users }}</div>
+                <div class="red">{{ message.message2users }}</div>
+            </div>
+        </div>
+
+        <div id="votepart" class="hidden container">
             <div class="subtitle">{{ votetitle }}</div>
             <div>{{ votecontent }}</div>
             <button v-on:click="chooseYes">Yes</button>
@@ -31,19 +41,24 @@
             <div id="confirmchoiceinfo" class="hidden">You chose "{{ userChoice }}"</div>
             <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">Confirm</button>
         </div>
-        <div class="subtitle">Quest Team Building</div>
-        <div v-for="user in users">
-            <label>
-                <input
-                    type="checkbox"
-                    :id="user.userId"
-                    :value="user.userId"
-                    v-model="selectedUsers"
-                />
-                {{ user.userId }}
-            </label>
+
+        <div class="container" id="teambuilding">
+            <div class="subtitle">Quest Team Building</div>
+            <div v-for="user in users">
+                <br />
+                <label>
+                    <input
+                        type="checkbox"
+                        :id="user.userId"
+                        :value="user.userId"
+                        v-model="selectedUsers"
+                    />
+                    {{ user.userId }}
+                </label>
+            </div>
+            <br />
+            <button v-on:click="doQuest">Do Quest</button>
         </div>
-        <button v-on:click="doQuest">Do Quest</button>
     </div>
 </template>
 <script>
@@ -65,6 +80,7 @@ export default {
             messages: [],
             messagecount: 0,
             ongoingvote: false,
+            voted: false,
             votetitle: 'this is vote title',
             votecontent: 'this is vote content',
             userChoice: 'Yes',
@@ -145,6 +161,7 @@ export default {
                 .then((response) => {
 
                 })
+            this.voted = true
         }
     },
     mounted: function () {
@@ -179,11 +196,7 @@ export default {
                 this.userRole = response.data
                 let roleUserSees = { 'Merlin': 'The Evils You Know', 'Percival': 'One is Merlin, the Other is Morgana', 'Mordred': 'The Evils You Know', 'Morgana': 'The Evils You Know', 'Assassin': 'The Evils You Know', 'Loyal Servant of Arther': '', 'Oberon': '', 'Minion of Mordred': '' }
                 this.roleUserSee = roleUserSees[this.userRole]
-                //disable no button
-                let ul = this.userRole
-                if (ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') {
-                    document.getElementById('nobutton').classList.remove('disabledButton')
-                }
+
             })
 
         //get users user see
@@ -209,6 +222,8 @@ export default {
                 .then((response) => {
                     //console.log(response.data)
                     if (this.messagecount === response.data) return
+                    votepart.classList.add('hidden')
+
                     this.messagecount = response.data
                     let tempmessage = []
                     let t = new Date().getTime()
@@ -233,7 +248,7 @@ export default {
                 url: `${this.server}/anybuild/${this.roomId}/${this.userId}/${this.userPsw}/`,
             })
                 .then((response) => {
-                    let votepart = document.getElementById('votepart')
+                    //console.log(response.data)
                     if (response.data === 'True') {
                         this.votetitle = 'Team Building Proposal'
                         axios({
@@ -242,10 +257,10 @@ export default {
                         })
                             .then((response) => {
                                 if (response.data != this.votecontent) this.votecontent = response.data
-                                console.log(response.data)
+
+                                //console.log(response.data)
                             })
                         this.ongoingvote = true
-                        votepart.classList.remove('hidden')
                     } else {
                         //get quest vote pull
                         axios({
@@ -253,7 +268,6 @@ export default {
                             url: `${this.server}/anyquest/${this.roomId}/${this.userId}/${this.userPsw}/`,
                         })
                             .then((response) => {
-                                let votepart = document.getElementById('votepart')
                                 if (response.data === 'True') {
                                     this.votetitle = 'Quest Proposal'
                                     axios({
@@ -262,17 +276,44 @@ export default {
                                     })
                                         .then((response) => {
                                             if (response.data != this.votecontent) this.votecontent = response.data
+
                                             //console.log(response.data)
                                         })
                                     this.ongoingvote = true
-                                    votepart.classList.remove('hidden')
                                 } else {//no vote
                                     this.ongoingvote = false
-                                    votepart.classList.add('hidden')
                                 }
                             })
                     }
                 })
+            //voted?
+            axios({
+                method: 'get',
+                url: `${this.server}/voted/${this.roomId}/${this.userId}/${this.userPsw}/`,
+            })
+                .then((response) => {
+                    this.voted = response.data === 'True'
+                    //console.log(this.voted)
+                })
+
+            //disable no button
+            let ul = this.userRole
+            if ((ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') || this.votetitle === 'Team Building Proposal') {
+                document.getElementById('nobutton').classList.remove('disabledButton')
+            } else {
+                document.getElementById('nobutton').classList.add('disabledButton')
+            }
+
+            if (this.ongoingvote) {
+                document.getElementById('teambuilding').classList.add('hidden')
+                if (this.voted) {
+                    document.getElementById('votepart').classList.add('hidden')
+                } else {
+                    document.getElementById('votepart').classList.remove('hidden')
+                }
+            } else {
+                document.getElementById('teambuilding').classList.remove('hidden')
+            }
 
 
         }, 1000)

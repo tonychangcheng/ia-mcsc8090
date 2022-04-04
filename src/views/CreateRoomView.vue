@@ -1,11 +1,13 @@
 <template>
     <div>
-        <div class="subtitle">Room ID</div>
-        <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
-        <br />
-        <button v-on:click="createRoom">Create Room</button>
-        <br />
-        <div>{{ info }}</div>
+        <div class="container">
+            <div class="subtitle">Room ID</div>
+            <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
+            <br />
+            <button v-on:click="createRoom">Create Room</button>
+            <br />
+            <div>{{ info }}</div>
+        </div>
     </div>
 </template>
 <script>
