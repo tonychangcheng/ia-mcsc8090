@@ -63,6 +63,7 @@ button {
     font-style: italic;
     font-weight: bold;
     text-align: center;
+    text-decoration: underline;
 }
 .disabledButton {
     pointer-events: none;
