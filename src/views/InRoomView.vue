@@ -9,7 +9,7 @@
         <div class="subtitle">User(s) in the Room</div>
         <div v-for="user in users">{{ user.userId }}</div>
             -->
-            <div class="subtitle">Tamplate</div>
+            <div class="subtitle">Template</div>
             <div>{{ template }}</div>
             <div class="subtitle">Number of Quest Team Members</div>
             <div>{{ teamBuildingPhase }}</div>
@@ -47,19 +47,13 @@
             <div v-for="user in users">
                 <br />
                 <label>
-                    <input
-                        type="checkbox"
-                        :id="user.userId"
-                        :value="user.userId"
-                        v-model="selectedUsers"
-                    />
+                    <input type="checkbox" :id="user.userId" :value="user.userId" v-model="selectedUsers" />
                     {{ user.userId }}
                 </label>
             </div>
             <br />
             <button v-on:click="doQuest">Do Quest</button>
-        </div>
-    </div>
+        </div>  </div>
 </template>
 <script>
 import axios from "axios"
@@ -74,7 +68,7 @@ export default {
             userCount: 0,
             userRole: '',
             roleUserSee: '',
-            server: 'http://127.0.0.1:8000',
+            server: 'http://59.78.35.89:7999',
             usersUserSee: [],
             selectedUsers: [],
             messages: [],
@@ -248,7 +242,7 @@ export default {
                 url: `${this.server}/anybuild/${this.roomId}/${this.userId}/${this.userPsw}/`,
             })
                 .then((response) => {
-                    //console.log(response.data)
+                    console.log('build:' + response.data)
                     if (response.data === 'True') {
                         this.votetitle = 'Team Building Proposal'
                         axios({
@@ -268,6 +262,7 @@ export default {
                             url: `${this.server}/anyquest/${this.roomId}/${this.userId}/${this.userPsw}/`,
                         })
                             .then((response) => {
+                                console.log('quest:' + response.data)
                                 if (response.data === 'True') {
                                     this.votetitle = 'Quest Proposal'
                                     axios({
@@ -293,7 +288,7 @@ export default {
             })
                 .then((response) => {
                     this.voted = response.data === 'True'
-                    //console.log(this.voted)
+                    console.log(this.voted)
                 })
 
             //disable no button
@@ -313,6 +308,7 @@ export default {
                 }
             } else {
                 document.getElementById('teambuilding').classList.remove('hidden')
+                document.getElementById('votepart').classList.add('hidden')
             }
 
 

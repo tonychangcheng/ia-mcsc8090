@@ -1,17 +1,21 @@
 <template>
     <div>
-        <div class="subtitle">Room ID</div>
-        <div>{{ roomId }}</div>
-        <div class="subtitle">Your User ID</div>
-        <div>{{ userId }}</div>
-        <div class="subtitle">Number of User(s)</div>
-        <div>{{ userCount }}</div>
-        <div class="subtitle">User(s) in the Room</div>
-        <div v-for="user in users">{{ user.userId }}</div>
-        <div class="subtitle">Tamplate</div>
-        <div>{{ template }}</div>
-        <div class="subtitle">Number of Quest Team Members</div>
-        <div>{{ teamBuildingPhase }}</div>
+        <div class="container">
+            <div class="subtitle">Room ID</div>
+            <div>{{ roomId }}</div>
+            <div class="subtitle">Your User ID</div>
+            <div>{{ userId }}</div>
+            <div class="subtitle">Number of User(s)</div>
+            <div>{{ userCount }}</div>
+            <div class="subtitle">User(s) in the Room</div>
+            <div v-for="user in users">{{ user.userId }}</div>
+        </div>
+        <div class="container">
+            <div class="subtitle">Template</div>
+            <div>{{ template }}</div>
+            <div class="subtitle">Number of Quest Team Members</div>
+            <div>{{ teamBuildingPhase }}</div>
+        </div>
         <button id="startGameButton" v-on:click="startGame" class="disabledButton">Start Game</button>
     </div>
 </template>
@@ -26,7 +30,7 @@ export default {
             userPsw: '',
             users: [],
             userCount: 0,
-            server: 'http://127.0.0.1:8000',
+            server: 'http://59.78.35.89:7999',
         }
     },
     computed: {

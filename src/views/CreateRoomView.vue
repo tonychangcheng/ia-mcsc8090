@@ -19,7 +19,7 @@ export default {
             roomId: 'sample',
             validRoomId: 'sample',
             info: '',
-            server: 'http://127.0.0.1:8000',
+            server: 'http://59.78.35.89:7999',
         }
     },
     methods: {
