@@ -110,7 +110,7 @@ button {
     text-decoration: none;
     border: 2px solid rgba(255, 255, 255, 1);
     padding: 7px 9px 7px 9px;
-    margin: 0px 5px;
+    margin: 0px 2px;
     border-radius: 2px;
 
     &:hover {

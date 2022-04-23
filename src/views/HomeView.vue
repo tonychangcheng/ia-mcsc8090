@@ -1,5 +1,13 @@
 <template>
+    <div>
+        <!--
     <button v-on:click="trypost">trypost button</button>
+    -->
+        <div class="container">
+            <div class="subtitle">No Home Page</div>
+            Caviar is lazy.
+        </div>
+    </div>
 </template>
 <script>
 
@@ -51,7 +59,7 @@ export default {
             })
                 .then((res) => {
                     this.token = res.data.token
-                    console.log(this.token)
+                    //console.log(this.token)
                 })
         },
 

@@ -159,6 +159,26 @@ export default {
 
                 })
             this.voted = true
+        },
+        updatemessages() {
+            axios({
+                method: 'get',
+                url: `${this.server}/allmessage/${this.roomId}/${this.userId}/${this.userPsw}/`,
+            })
+                .then((res) => {
+                    //console.log(res.data)
+                    let data = res.data
+                    let tempmessage = []
+                    let messagecount = data['messagecount']
+                    if (messagecount === this.messagecount) return
+                    votepart.classList.add('hidden')
+                    this.messagecount = messagecount
+                    for (let messageid = 1; messageid <= messagecount; messageid++) {
+                        tempmessage.push({ 'messagetitle': data[`messagetitle${messageid}`], 'messageusers': data[`messageusers${messageid}`], 'message1users': data[`message1users${messageid}`], 'message2users': data[`message2users${messageid}`] })
+                    }
+                    //console.log(tempmessage)
+                    this.messages = tempmessage
+                })
         }
     },
     mounted: function () {
@@ -208,10 +228,11 @@ export default {
                     this.usersUserSee.push({ 'userId': reData['user' + useri] })
                 }
             })
-
+        this.updatemessages()
 
         setInterval(() => {
             //get message pull
+            /*
             axios({
                 method: 'get',
                 url: `${this.server}/messagecount/${this.roomId}/`,
@@ -232,12 +253,16 @@ export default {
                             url: `${this.server}/message/${this.roomId}/${this.userId}/${this.userPsw}/${messagei}/`
                         })
                             .then((response) => {
-                                //console.log(response.data)
+                                console.log(response.data)
                                 tempmessage.push(response.data)
                             })
-                        this.messages = tempmessage
+                        //this.messages = tempmessage
+                        console.log(tempmessage)
                     }
                 })
+            */
+            //new message pull
+            this.updatemessages()
 
             //get build vote pull
             axios({
@@ -245,7 +270,7 @@ export default {
                 url: `${this.server}/anybuild/${this.roomId}/${this.userId}/${this.userPsw}/`,
             })
                 .then((response) => {
-                    console.log('build:' + response.data)
+                    //console.log('build:' + response.data)
                     if (response.data === 'True') {
                         this.votetitle = 'Team Building Proposal'
                         axios({
@@ -265,7 +290,7 @@ export default {
                             url: `${this.server}/anyquest/${this.roomId}/${this.userId}/${this.userPsw}/`,
                         })
                             .then((response) => {
-                                console.log('quest:' + response.data)
+                                //console.log('quest:' + response.data)
                                 if (response.data === 'True') {
                                     this.votetitle = 'Quest Proposal'
                                     axios({
@@ -291,7 +316,7 @@ export default {
             })
                 .then((response) => {
                     this.voted = response.data === 'True'
-                    console.log(this.voted)
+                    //console.log(this.voted)
                 })
 
             //disable no button
