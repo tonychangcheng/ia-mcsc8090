@@ -9,12 +9,7 @@
             <br />
             <div class="subtitle">User Password</div>
             <div>DO NOT USE YOUR COMMON PASSWORD</div>
-            <input
-                v-on:input="checkUserPsw"
-                v-model="userPsw"
-                type="text"
-                placeholder="User Password"
-            />
+            <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="User Password" />
             <br />
             <button v-on:click="joinRoom">Join Room</button>
             <br />
@@ -35,7 +30,12 @@ export default {
             validUserId: 'sample',
             validUserPsw: 'sample',
             info: '',
-            server: 'http://59.78.35.89:7999',
+            //server: 'http://59.78.35.89:7999',
+        }
+    },
+    computed: {
+        server() {
+            return this.$store.state.server
         }
     },
     methods: {

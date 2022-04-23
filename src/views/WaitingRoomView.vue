@@ -30,7 +30,6 @@ export default {
             userPsw: '',
             users: [],
             userCount: 0,
-            server: 'http://59.78.35.89:7999',
         }
     },
     computed: {
@@ -46,7 +45,10 @@ export default {
             if (this.userCount > 10) return 'Too many users'
             let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
             return teamBuildingPhases[this.userCount]
-        }
+        },
+        server() {
+            return this.$store.state.server
+        },
     },
     methods: {
         startGame() {

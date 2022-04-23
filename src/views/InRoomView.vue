@@ -53,7 +53,8 @@
             </div>
             <br />
             <button v-on:click="doQuest">Do Quest</button>
-        </div>  </div>
+        </div>
+    </div>
 </template>
 <script>
 import axios from "axios"
@@ -68,7 +69,6 @@ export default {
             userCount: 0,
             userRole: '',
             roleUserSee: '',
-            server: 'http://59.78.35.89:7999',
             usersUserSee: [],
             selectedUsers: [],
             messages: [],
@@ -93,7 +93,10 @@ export default {
             if (this.userCount > 10) return 'Too many users'
             let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
             return teamBuildingPhases[this.userCount]
-        }
+        },
+        server() {
+            return this.$store.state.server
+        },
     },
     methods: {
         doQuest() {

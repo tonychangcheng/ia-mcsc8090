@@ -19,7 +19,11 @@ export default {
             roomId: 'sample',
             validRoomId: 'sample',
             info: '',
-            server: 'http://59.78.35.89:7999',
+        }
+    },
+    computed: {
+        server() {
+            return this.$store.state.server
         }
     },
     methods: {
