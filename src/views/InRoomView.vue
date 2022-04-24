@@ -73,8 +73,8 @@ export default {
             selectedUsers: [],
             messages: [],
             messagecount: 0,
-            ongoingvote: false,
-            voted: false,
+            showvotecontainer: false,
+            showbuildcontainer: false,
             votetitle: 'this is vote title',
             votecontent: 'this is vote content',
             userChoice: 'Yes',
@@ -108,7 +108,8 @@ export default {
                 request['user' + useri] = this.selectedUsers[useri]
             }
             selectedUsersJSON = JSON.stringify(request)
-
+            document.getElementById('votepart').classList.add('hidden')
+            document.getElementById('teambuilding').classList.add('hidden')
             axios({
                 method: 'get',
                 url: `${this.server}/buildteam/${this.roomId}/${this.userId}/${this.userPsw}/${this.selectedUsers.length}/`,
@@ -118,7 +119,7 @@ export default {
                         let t = new Date().getTime()
                         for (let user of this.selectedUsers) {
                             //console.log(user)
-                            t += 50
+                            t += 70
                             while (new Date().getTime() < t) { }
                             axios({
                                 method: 'get',
@@ -133,32 +134,26 @@ export default {
                 })
         },
         chooseYes() {
-            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
-            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
-            confirmchoicebutton.classList.remove('hidden')
-            confirmchoiceinfo.classList.remove('hidden')
+            document.getElementById('confirmchoiceinfo').classList.remove('hidden')
+            document.getElementById('confirmchoicebutton').classList.remove('hidden')
             this.userChoice = 'yes'
         },
         chooseNo() {
-            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
-            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
-            confirmchoicebutton.classList.remove('hidden')
-            confirmchoiceinfo.classList.remove('hidden')
+            document.getElementById('confirmchoiceinfo').classList.remove('hidden')
+            document.getElementById('confirmchoicebutton').classList.remove('hidden')
             this.userChoice = 'no'
         },
         confirmChoice() {
-            let confirmchoiceinfo = document.getElementById('confirmchoiceinfo')
-            let confirmchoicebutton = document.getElementById('confirmchoicebutton')
-            confirmchoicebutton.classList.add('hidden')
-            confirmchoiceinfo.classList.add('hidden')
             axios({
                 method: 'get',
                 url: `${this.server}/vote/${this.roomId}/${this.userId}/${this.userPsw}/${this.userChoice}`
             })
                 .then((response) => {
-
+                    document.getElementById('confirmchoiceinfo').classList.add('hidden')
+                    document.getElementById('confirmchoicebutton').classList.add('hidden')
+                    document.getElementById('votepart').classList.add('hidden')
+                    document.getElementById('teambuilding').classList.add('hidden')
                 })
-            this.voted = true
         },
         updatemessages() {
             axios({
@@ -178,6 +173,77 @@ export default {
                     }
                     //console.log(tempmessage)
                     this.messages = tempmessage
+                })
+
+        },
+
+        /*
+        if (this.ongoingvote) {
+                document.getElementById('teambuilding').classList.add('hidden')
+                if (this.voted) {
+                    document.getElementById('votepart').classList.add('hidden')
+                } else {
+                    document.getElementById('votepart').classList.remove('hidden')
+                }
+            } else {
+                document.getElementById('teambuilding').classList.remove('hidden')
+                document.getElementById('votepart').classList.add('hidden')
+            }
+        */
+
+        updatecontainers() {
+            if (this.showbuildcontainer) {
+                document.getElementById('teambuilding').classList.remove('hidden')
+            } else {
+                document.getElementById('teambuilding').classList.add('hidden')
+            }
+            if (this.showvotecontainer) {
+                document.getElementById('votepart').classList.remove('hidden')
+            } else {
+                document.getElementById('votepart').classList.add('hidden')
+            }
+        },
+
+        updateroominfoAndRender() {
+            axios({
+                method: 'get',
+                url: `${this.server}/allroominfo/${this.roomId}/${this.userId}/${this.userPsw}/`,
+            })
+                .then((res) => {
+                    let re = res.data
+                    //console.log(re)
+                    //normal
+                    if (re['roomfurtherstatus'] === 'normal') {
+                        this.showbuildcontainer = true
+                        this.showvotecontainer = false
+                        this.votetitle = ''
+                    }
+                    //build
+                    if (re['roomfurtherstatus'] === 'build') {
+                        this.showbuildcontainer = false
+                        if (this.votetitle != re['votetitle']) {
+                            this.votetitle = re['votetitle']
+                            this.votecontent = re['votecontent']
+                        }
+                        this.showvotecontainer = !re['voted']
+                    }
+                    //quest
+                    if (re['roomfurtherstatus'] === 'quest') {
+                        this.showbuildcontainer = false
+                        if (this.votetitle != re['votetitle']) {
+                            this.votetitle = re['votetitle']
+                            this.votecontent = re['votecontent']
+                        }
+                        this.showvotecontainer = re['onvote'] && (!re['voted'])
+                    }
+                    //deal with no button
+                    let ul = this.userRole
+                    if ((ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
+                        document.getElementById('nobutton').classList.remove('disabledButton')
+                    } else {
+                        document.getElementById('nobutton').classList.add('disabledButton')
+                    }
+                    this.updatecontainers()
                 })
         }
     },
@@ -216,6 +282,7 @@ export default {
 
             })
 
+
         //get users user see
         axios({
             method: 'get',
@@ -228,7 +295,9 @@ export default {
                     this.usersUserSee.push({ 'userId': reData['user' + useri] })
                 }
             })
+
         this.updatemessages()
+        this.updateroominfoAndRender()
 
         setInterval(() => {
             //get message pull
@@ -264,6 +333,10 @@ export default {
             //new message pull
             this.updatemessages()
 
+            //get all room info
+            this.updateroominfoAndRender()
+
+            /*
             //get build vote pull
             axios({
                 method: 'get',
@@ -338,9 +411,9 @@ export default {
                 document.getElementById('teambuilding').classList.remove('hidden')
                 document.getElementById('votepart').classList.add('hidden')
             }
+            */
 
-
-        }, 1000)
+        }, 2000)
     }
 }
 </script>
