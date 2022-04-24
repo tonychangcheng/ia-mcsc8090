@@ -52,7 +52,7 @@
                 </label>
             </div>
             <br />
-            <button v-on:click="doQuest">Do Quest</button>
+            <button v-on:click="doQuestNew">Do Quest</button>
         </div>
     </div>
 </template>
@@ -78,6 +78,7 @@ export default {
             votetitle: 'this is vote title',
             votecontent: 'this is vote content',
             userChoice: 'Yes',
+            token: '',
         }
     },
     computed: {
@@ -131,6 +132,26 @@ export default {
                                 })
                         }
                     }
+                })
+        },
+        doQuestNew() {
+            let re = {}
+            re['teammembercount'] = this.selectedUsers.length
+            for (let useri = 0; useri < re['teammembercount']; useri++) {
+                re[`teammember${useri + 1}`] = this.selectedUsers[useri]
+            }
+            axios({
+                headers: {
+                    'X-CSRFToken': this.token,
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+                url: `${this.server}/newbuildteam/${this.roomId}/${this.userId}/${this.userPsw}/`,
+                method: 'post',
+                data: re,
+            })
+                .then((res) => {
+
                 })
         },
         chooseYes() {
@@ -245,7 +266,18 @@ export default {
                     }
                     this.updatecontainers()
                 })
-        }
+        },
+        gettoken() {
+            axios({
+                method: 'get',
+                url: `${this.server}/get_csrf_token/`,
+                withCredentials: true
+            })
+                .then((res) => {
+                    this.token = res.data.token
+                    //console.log(this.token)
+                })
+        },
     },
     mounted: function () {
         this.roomId = localStorage.getItem('roomId')
@@ -298,6 +330,8 @@ export default {
 
         this.updatemessages()
         this.updateroominfoAndRender()
+
+        this.gettoken()
 
         setInterval(() => {
             //get message pull
