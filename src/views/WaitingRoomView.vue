@@ -91,7 +91,7 @@ export default {
                         startRoomButton.classList.remove('disabledButton')
                     }
                 })
-        }, 1000)
+        }, 2000)
     }
 }
 </script>
