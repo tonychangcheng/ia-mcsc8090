@@ -1,3 +1,6 @@
+# config
+/src/store/index.js
+
 .DS_Store
 node_modules
 /dist

@@ -96,9 +96,9 @@ button {
 }
 
 #app {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 7px;
 }
 
 .links {
@@ -108,7 +108,7 @@ button {
 
 .link {
   text-decoration: none;
-  border: 2px solid rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
   padding: 7px 9px 7px 9px;
   margin: 0px 2px;
   border-radius: 2px;
@@ -124,8 +124,8 @@ button {
 }
 
 .container {
-  border: 2px solid rgba(255, 255, 255, 1);
-  padding: 0 10px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 0 7px 7px 7px;
   border-radius: 2px;
   margin: 10px auto;
 }

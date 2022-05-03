@@ -62,7 +62,6 @@ export default {
           //console.log(this.token)
         })
     },
-
   },
   mounted: function () {
     for (let i = 1; i <= 99999; i++)window.clearInterval(i)
