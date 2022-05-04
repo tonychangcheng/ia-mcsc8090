@@ -67,11 +67,6 @@ export default {
     for (let i = 1; i <= 99999; i++)window.clearInterval(i)
     //get token
     this.gettoken()
-
-    document.querySelectorAll('.link').forEach((link) => {
-      link.classList.remove('chosen')
-    })
-    document.querySelector('#homeLink').classList.add('chosen')
   },
 }
 </script>
