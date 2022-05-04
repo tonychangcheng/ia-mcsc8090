@@ -7,6 +7,7 @@
       <router-link class="link" to="/createroom">Create Room</router-link>
       <router-link class="link" to="/joinroom">Join Room</router-link>
     </div>
+    <hr id="theOnlyHr">
     <!--
         <router-link to="/waitingroom">Waiting Room|</router-link>
         <router-link to="/inroom">In Room</router-link>
@@ -21,6 +22,10 @@
 * {
   color: rgba(255, 255, 255, 1);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#theOnlyHr {
+  margin: 10px 0 -19px 0;
 }
 
 body {
@@ -60,7 +65,7 @@ button {
 .title {
   font-size: xx-large;
   font-weight: bolder;
-  margin: 1rem auto 0.5rem auto;
+  margin: 1rem auto 0rem auto;
   text-align: center;
 }
 
@@ -104,14 +109,18 @@ button {
 .links {
   margin: 0 auto;
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 7px 0px 6px 0px;
+  width: fit-content;
 }
 
 .link {
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 1);
-  padding: 7px 9px 7px 9px;
-  margin: 0px 2px;
-  border-radius: 2px;
+  padding: 7px 10px 7px 10px;
+  margin: 0px 0px;
+  border-radius: 0px;
+  border-left: 0.5px solid rgba(255, 255, 255, 1);
+  border-right: 0.5px solid rgba(255, 255, 255, 1);
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -121,6 +130,11 @@ button {
     background: rgba(255, 255, 255, 1);
     color: rgba(13, 25, 31, 1);
   }
+}
+
+.link.router-link-exact-active {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(13, 25, 31, 1);
 }
 
 .container {
