@@ -25,7 +25,7 @@
     <div class="container">
       <div class="subtitle">History</div>
       <div v-for="message in messages">
-        <br />
+        <hr>
         <div class="subsubtitle">{{ message.messagetitle }}</div>
         <div>{{ message.messageusers }}</div>
         <div class="green">{{ message.message1users }}</div>

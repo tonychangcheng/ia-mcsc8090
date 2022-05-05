@@ -29,6 +29,15 @@
   margin: 0 auto;
 }
 
+hr {
+  border: none;
+  border-top: 1px dashed #888;
+  color: #fff;
+  overflow: visible;
+  text-align: center;
+  height: 0px;
+}
+
 #theOnlyHr {
   margin: 10px 0 -19px 0;
 }
