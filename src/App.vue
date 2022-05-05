@@ -24,6 +24,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#app {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
 #theOnlyHr {
   margin: 10px 0 -19px 0;
 }
