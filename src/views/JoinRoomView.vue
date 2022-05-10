@@ -152,5 +152,6 @@ export default {
       this.updateRoomInfo();
     }
   },
+
 }
 </script>
