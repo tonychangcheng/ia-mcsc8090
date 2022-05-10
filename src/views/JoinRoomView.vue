@@ -21,7 +21,7 @@
 import axios from "axios"
 export default {
   name: 'CreateRoomView',
-  data() {
+  data () {
     return {
       roomId: 'sample',
       userId: 'sample',
@@ -34,12 +34,12 @@ export default {
     }
   },
   computed: {
-    server() {
+    server () {
       return this.$store.state.server
     }
   },
   methods: {
-    joinRoom() {
+    joinRoom () {
       if (this.validRoomId === '') {
         this.info = 'Room ID cannot be empty!'
         return
@@ -84,7 +84,7 @@ export default {
             })
         })
     },
-    checkRoomId() {
+    checkRoomId () {
       let flag = this.roomId.length <= 6;
       for (let i = 0; i < this.roomId.length && flag; i++) {
         let c = this.roomId.charAt(i)
@@ -99,7 +99,7 @@ export default {
         this.roomId = this.validRoomId
       }
     },
-    checkUserId() {
+    checkUserId () {
       let flag = this.userId.length <= 7;
       for (let i = 0; i < this.userId.length && flag; i++) {
         let c = this.userId.charAt(i)
@@ -114,7 +114,7 @@ export default {
         this.userId = this.validUserId
       }
     },
-    checkUserPsw() {
+    checkUserPsw () {
       let flag = this.userPsw.length <= 6;
       for (let i = 0; i < this.userPsw.length && flag; i++) {
         let c = this.userPsw.charAt(i)
@@ -129,7 +129,7 @@ export default {
         this.userPsw = this.validUserPsw
       }
     },
-    updateRoomInfo() {
+    updateRoomInfo () {
       localStorage.setItem(`roomId`, this.validRoomId)
       localStorage.setItem(`userId`, this.validUserId)
       localStorage.setItem(`userPsw`, this.validUserPsw)

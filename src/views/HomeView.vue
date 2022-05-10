@@ -21,18 +21,18 @@ export default {
   components: {
 
   },
-  data() {
+  data () {
     return {
       token: ''
     }
   },
   computed: {
-    server() {
+    server () {
       return this.$store.state.server
     }
   },
   methods: {
-    trypost() {
+    trypost () {
 
       axios({
         headers: {
@@ -51,7 +51,7 @@ export default {
         })
     },
 
-    gettoken() {
+    gettoken () {
       axios({
         method: 'get',
         url: `${this.server}/get_csrf_token/`,

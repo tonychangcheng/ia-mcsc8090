@@ -23,7 +23,7 @@
 import axios from "axios"
 export default {
   name: 'WaitingRoomView',
-  data() {
+  data () {
     return {
       roomId: '',
       userId: '',
@@ -46,12 +46,12 @@ export default {
       let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
     },
-    server() {
+    server () {
       return this.$store.state.server
     },
   },
   methods: {
-    startGame() {
+    startGame () {
       axios({
         method: 'get',
         url: `${this.server}/start/${this.roomId}/${this.userId}/${this.userPsw}/`

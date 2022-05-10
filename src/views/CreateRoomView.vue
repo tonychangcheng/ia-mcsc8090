@@ -14,7 +14,7 @@
 import axios from "axios"
 export default {
   name: 'CreateRoomView',
-  data() {
+  data () {
     return {
       roomId: 'sample',
       validRoomId: 'sample',
@@ -22,12 +22,12 @@ export default {
     }
   },
   computed: {
-    server() {
+    server () {
       return this.$store.state.server
     }
   },
   methods: {
-    createRoom() {
+    createRoom () {
       if (this.validRoomId === '') {
         this.info = 'Room ID cannot be empty!'
         return
@@ -50,7 +50,7 @@ export default {
           }
         })
     },
-    checkRoomId() {
+    checkRoomId () {
       let flag = this.roomId.length <= 6;
       for (let i = 0; i < this.roomId.length && flag; i++) {
         let c = this.roomId.charAt(i)
@@ -65,7 +65,7 @@ export default {
         this.roomId = this.validRoomId
       }
     },
-    updateRoomInfo() {
+    updateRoomInfo () {
       localStorage.setItem(`roomId`, this.validRoomId)
     },
   },
