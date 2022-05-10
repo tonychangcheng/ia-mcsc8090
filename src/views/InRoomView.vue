@@ -60,7 +60,7 @@
 import axios from "axios"
 export default {
   name: 'InRoomView',
-  data() {
+  data () {
     return {
       roomId: '',
       userId: '',
@@ -95,12 +95,12 @@ export default {
       let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
     },
-    server() {
+    server () {
       return this.$store.state.server
     },
   },
   methods: {
-    doQuest() {
+    doQuest () {
 
       //console.log(this.selectedUsers.length)
       let selectedUsersJSON = ''
@@ -134,7 +134,7 @@ export default {
           }
         })
     },
-    doQuestNew() {
+    doQuestNew () {
       let re = {}
       re['teammembercount'] = this.selectedUsers.length
       for (let useri = 0; useri < re['teammembercount']; useri++) {
@@ -154,17 +154,17 @@ export default {
 
         })
     },
-    chooseYes() {
+    chooseYes () {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'yes'
     },
-    chooseNo() {
+    chooseNo () {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'no'
     },
-    confirmChoice() {
+    confirmChoice () {
       axios({
         method: 'get',
         url: `${this.server}/vote/${this.roomId}/${this.userId}/${this.userPsw}/${this.userChoice}`
@@ -176,7 +176,7 @@ export default {
           document.getElementById('teambuilding').classList.add('hidden')
         })
     },
-    updatemessages() {
+    updatemessages () {
       axios({
         method: 'get',
         url: `${this.server}/allmessage/${this.roomId}/${this.userId}/${this.userPsw}/`,
@@ -212,7 +212,7 @@ export default {
         }
     */
 
-    updatecontainers() {
+    updatecontainers () {
       if (this.showbuildcontainer) {
         document.getElementById('teambuilding').classList.remove('hidden')
       } else {
@@ -225,7 +225,7 @@ export default {
       }
     },
 
-    updateroominfoAndRender() {
+    updateroominfoAndRender () {
       axios({
         method: 'get',
         url: `${this.server}/allroominfo/${this.roomId}/${this.userId}/${this.userPsw}/`,
@@ -267,7 +267,7 @@ export default {
           this.updatecontainers()
         })
     },
-    gettoken() {
+    gettoken () {
       axios({
         method: 'get',
         url: `${this.server}/get_csrf_token/`,
