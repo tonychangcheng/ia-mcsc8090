@@ -24,7 +24,7 @@
     -->
     <div class="container">
       <div class="subtitle">No Home Page</div>
-      Caviar is lazy.
+      zPatronus is lazy.
     </div>
   </div>
 </template>
