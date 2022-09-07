@@ -23,8 +23,13 @@
     <button v-on:click="trypost">trypost button</button>
     -->
     <div class="container">
-      <div class="subtitle">No Home Page</div>
-      zPatronus is lazy.
+      <div class="subtitle">--help</div>
+      To play God of Avalon using this website, a room must be created.
+      <hr>
+      If you haven't create one, goto "Create Room" tab to do so, in which you need to select the name of the room.
+      <hr>
+      If a room has been created, goto "Join Room" tab, in which you need to select your user name and set a password.
+      If the user name hasn't been created in this room, a new user will be initialized.
     </div>
   </div>
 </template>
