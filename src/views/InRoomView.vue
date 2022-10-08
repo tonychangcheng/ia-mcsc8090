@@ -123,8 +123,8 @@ export default {
     },
   },
   methods: {
+    ///////////////////////////////////////////// no longer used
     doQuest () {
-
       //console.log(this.selectedUsers.length)
       let selectedUsersJSON = ''
       let request = {}
@@ -174,7 +174,11 @@ export default {
         data: re,
       })
         .then((res) => {
+          //new message pull
+          this.updatemessages()
 
+          //get all room info
+          this.updateroominfoAndRender()
         })
     },
     chooseYes () {
@@ -351,10 +355,10 @@ export default {
         }
       })
 
+    this.gettoken()
+
     this.updatemessages()
     this.updateroominfoAndRender()
-
-    this.gettoken()
 
     setInterval(() => {
       //get message pull
@@ -471,6 +475,9 @@ export default {
       */
 
     }, 4000)
+
+    this.updatemessages()
+    this.updateroominfoAndRender()
   }
 }
 </script>
