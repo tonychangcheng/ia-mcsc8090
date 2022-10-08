@@ -470,7 +470,7 @@ export default {
       }
       */
 
-    }, 2000)
+    }, 4000)
   }
 }
 </script>
