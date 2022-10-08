@@ -37,7 +37,7 @@
     <div class="container">
       <details>
         <summary>
-          <div class="subtitle">Your Role (click to reveal)</div>
+          <div class="subtitle">Your Role (click to reveal/hide)</div>
         </summary>
         <div>{{ userRole }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
