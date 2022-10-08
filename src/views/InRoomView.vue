@@ -35,10 +35,14 @@
     </div>
 
     <div class="container">
-      <div class="subtitle">Your Role</div>
-      <div>{{ userRole }}</div>
-      <div class="subtitle">{{ roleUserSee }}</div>
-      <div v-for="user in usersUserSee">{{ user.userId }}</div>
+      <details>
+        <summary>
+          <div class="subtitle">Your Role (click to reveal)</div>
+        </summary>
+        <div>{{ userRole }}</div>
+        <div class="subtitle">{{ roleUserSee }}</div>
+        <div v-for="user in usersUserSee">{{ user.userId }}</div>
+      </details>
     </div>
 
     <div class="container">
