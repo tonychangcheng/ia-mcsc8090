@@ -24,7 +24,7 @@
     -->
     <div class="container">
       <div class="subtitle">--help</div>
-      To play God of Avalon using this website, a room must be created.
+      To play The Resistance: Avalon using this website, a room must be created.
       <hr>
       If you haven't create one, goto "Create Room" tab to do so, in which you need to select the name of the room.
       <hr>
