@@ -474,7 +474,7 @@ export default {
       }
       */
 
-    }, 4000)
+    }, this.server === 'http://59.78.35.89:7999' ? 100 : 4000)
 
     this.updatemessages()
     this.updateroominfoAndRender()
