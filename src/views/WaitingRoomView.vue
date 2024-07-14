@@ -20,22 +20,22 @@
 <template>
   <div>
     <div class="container">
-      <div class="subtitle">Room ID</div>
+      <div class="subtitle">房间ID</div>
       <div>{{ roomId }}</div>
-      <div class="subtitle">Your User ID</div>
+      <div class="subtitle">你的玩家ID</div>
       <div>{{ userId }}</div>
-      <div class="subtitle">Number of User(s)</div>
+      <div class="subtitle">玩家数量</div>
       <div>{{ userCount }}</div>
-      <div class="subtitle">User(s) in the Room</div>
+      <div class="subtitle">房间内的玩家</div>
       <div v-for="user in users">{{ user.userId }}</div>
     </div>
     <div class="container">
-      <div class="subtitle">Template</div>
+      <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      <div class="subtitle">Number of Quest Team Members</div>
+      <div class="subtitle">任务队成员数量</div>
       <div>{{ teamBuildingPhase }}</div>
     </div>
-    <button id="startGameButton" v-on:click="startGame" class="disabledButton">Start Game</button>
+    <button id="startGameButton" v-on:click="startGame" class="disabledButton">开始游戏</button>
   </div>
 </template>
 <script>
@@ -53,16 +53,38 @@ export default {
   },
   computed: {
     template: function () {
-      if (this.userCount < 5) return 'Too less users'
-      if (this.userCount > 10) return 'Too many users'
-      let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
+      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount > 10) return '玩家数量过多，请重开房间'
+      let templates = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        '梅林、派西维尔、莫甘娜、刺客、1名亚瑟的忠臣',
+        '梅林、派西维尔、莫甘娜、刺客、2名亚瑟的忠臣',
+        '梅林、派西维尔、莫甘娜、刺客、奥伯伦、2名亚瑟的忠臣',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、3名亚瑟的忠臣（建议使用湖中仙女）',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣（建议使用湖中仙女）',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣、莫德雷德的爪牙（建议使用湖中仙女）'
+      ];
+      // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
       return templates[this.userCount]
     },
     teamBuildingPhase: function () {
-      if (this.userCount < 5) return 'Too less users'
-      if (this.userCount > 10) return 'Too many users'
-      let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
+      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount > 10) return '玩家数量过多，请重开房间'
+      let teamBuildingPhases = [
+        '', '', '', '', '',
+        '2 3 2 3 3',
+        '2 3 4 3 4',
+        '2 3 3 4（保护轮）4',
+        '3 4 4 5（保护轮）5',
+        '3 4 4 5（保护轮）5',
+        '3 4 4 5（保护轮）5'
+      ];
+      // let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
     },
     server () {

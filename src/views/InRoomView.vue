@@ -20,24 +20,24 @@
 <template>
   <div>
     <div class="container">
-      <div class="subtitle">Match Info</div>
-      <div class>Room ID: {{ roomId }}</div>
-      <div class>Your User ID: {{ userId }}</div>
-      <div class>Number of User(s): {{ userCount }}</div>
+      <div class="subtitle">对局信息</div>
+      <div>房间ID: {{ roomId }}</div>
+      <div>你的玩家ID: {{ userId }}</div>
+      <div>玩家数量: {{ userCount }}</div>
       <!--
-        <div class="subtitle">User(s) in the Room</div>
-        <div v-for="user in users">{{ user.userId }}</div>
-            -->
-      <div class="subtitle">Template</div>
+    <div class="subtitle">房间内的玩家</div>
+    <div v-for="user in users">{{ user.userId }}</div>
+  -->
+      <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      <div class="subtitle">Number of Quest Team Members</div>
+      <div class="subtitle">任务队成员数量</div>
       <div>{{ teamBuildingPhase }}</div>
     </div>
 
     <div class="container">
       <details>
         <summary>
-          <div class="subtitle">Your Role (click to reveal/hide)</div>
+          <div class="subtitle">你的角色（点击以展示/隐藏）</div>
         </summary>
         <div>{{ userRole }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="container">
-      <div class="subtitle">History</div>
+      <div class="subtitle">历史记录</div>
       <div v-for="message in messages">
         <hr>
         <div class="subsubtitle">{{ message.messagetitle }}</div>
@@ -59,24 +59,39 @@
     <div id="votepart" class="hidden container">
       <div class="subtitle">{{ votetitle }}</div>
       <div>{{ votecontent }}</div>
-      <button v-on:click="chooseYes">Yes</button>
-      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">No</button>
-      <div id="confirmchoiceinfo" class="hidden">You chose "{{ userChoice }}"</div>
-      <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">Confirm</button>
+      <button v-on:click="chooseYes">是</button>
+      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">否</button>
+      <div id="confirmchoiceinfo" class="hidden">你选择了 "{{ userChoice }}"</div>
+      <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">确认</button>
     </div>
 
     <div class="container" id="teambuilding">
-      <div class="subtitle">Quest Team Building</div>
+      <div class="subtitle">组建任务队伍</div>
+
       <div v-for="user in users">
-        <br />
-        <label>
-          <input type="checkbox" :id="user.userId" :value="user.userId" v-model="selectedUsers" />
-          {{ user.userId }}
-        </label>
+
+        <div class="checkbox-wrapper-60">
+          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers" />
+          <label :for="user.userId" class="label">
+            <svg viewBox="0 0 65 65" height="30" width="30">
+              <rect x="7" y="7" width="50" height="50" stroke="white" fill="none" />
+              <g transform="translate(-23,-967.36216)" id="layer1-60">
+                <path id="path4146" d="m 55,978 c -73,19 46,71 15,2 C 60,959 13,966 30,1007 c 12,30 61,13 46,-23"
+                  fill="none" stroke="white" stroke-width="3" class="path1" />
+              </g>
+            </svg>
+            <span> {{ user.userId }}</span>
+          </label>
+        </div>
+
       </div>
+
       <br />
-      <button v-on:click="doQuestNew">Do Quest</button>
+
+      <button v-on:click="doQuestNew">发起任务队伍投票</button>
     </div>
+
+
   </div>
 </template>
 <script>
@@ -106,16 +121,38 @@ export default {
   },
   computed: {
     template: function () {
-      if (this.userCount < 5) return 'Too less users'
-      if (this.userCount > 10) return 'Too many users'
-      let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, 1 Minion of Mordred (Lady of the Lake is recommended)']
+      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount > 10) return '玩家数量过多，请重开房间'
+      let templates = [
+        '',
+        '',
+        '',
+        '',
+        '',
+        '梅林、派西维尔、莫甘娜、刺客、1名亚瑟的忠臣',
+        '梅林、派西维尔、莫甘娜、刺客、2名亚瑟的忠臣',
+        '梅林、派西维尔、莫甘娜、刺客、奥伯伦、2名亚瑟的忠臣',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、3名亚瑟的忠臣（建议使用湖中仙女）',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣（建议使用湖中仙女）',
+        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣、莫德雷德的爪牙（建议使用湖中仙女）'
+      ];
+      // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
       return templates[this.userCount]
     },
     teamBuildingPhase: function () {
-      if (this.userCount < 5) return 'Too less users'
-      if (this.userCount > 10) return 'Too many users'
-      let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
+      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount > 10) return '玩家数量过多，请重开房间'
+      let teamBuildingPhases = [
+        '', '', '', '', '',
+        '2 3 2 3 3',
+        '2 3 4 3 4',
+        '2 3 3 4（保护轮）4',
+        '3 4 4 5（保护轮）5',
+        '3 4 4 5（保护轮）5',
+        '3 4 4 5（保护轮）5'
+      ];
+      // let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
     },
     server () {
@@ -336,7 +373,16 @@ export default {
     })
       .then((response) => {
         this.userRole = response.data
-        let roleUserSees = { 'Merlin': 'The Evils You Know', 'Percival': 'One is Merlin, the Other is Morgana', 'Mordred': 'The Evils You Know', 'Morgana': 'The Evils You Know', 'Assassin': 'The Evils You Know', 'Loyal Servant of Arther': '', 'Oberon': '', 'Minion of Mordred': 'The Evils You Know' }
+        let roleUserSees = {
+          'Merlin': '你知道的坏人',
+          'Percival': '一个是梅林，另一个是莫甘娜',
+          'Mordred': '你知道的坏人',
+          'Morgana': '你知道的坏人',
+          'Assassin': '你知道的坏人',
+          'Loyal Servant of Arther': '', // 对于亚瑟的忠臣，没有额外信息
+          'Oberon': '', // 对于奥伯伦，没有额外信息
+          'Minion of Mordred': '你知道的坏人'
+        }
         this.roleUserSee = roleUserSees[this.userRole]
 
       })
@@ -484,5 +530,51 @@ export default {
 <style>
 label {
   width: 100%;
+}
+</style>
+
+
+
+<style>
+.checkbox-wrapper-60 input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+}
+
+.checkbox-wrapper-60 *,
+.checkbox-wrapper-60 ::after,
+.checkbox-wrapper-60 ::before {
+  box-sizing: border-box;
+}
+
+.checkbox-wrapper-60 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+
+.checkbox-wrapper-60 .check {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  opacity: 0;
+}
+
+.checkbox-wrapper-60 .label svg {
+  vertical-align: middle;
+}
+
+.checkbox-wrapper-60 .path1 {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: .5s all;
+}
+
+.checkbox-wrapper-60 .check:checked+label svg g path {
+  stroke-dashoffset: 0;
 }
 </style>

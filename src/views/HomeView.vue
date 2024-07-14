@@ -24,12 +24,11 @@
     -->
     <div class="container">
       <div class="subtitle">--help</div>
-      To play The Resistance: Avalon using this website, a room must be created.
+      要使用此网站玩《阿瓦隆：抵抗组织》，首先需要创建一个房间。
       <hr>
-      If you haven't create one, goto "Create Room" tab to do so, in which you need to select the name of the room.
+      如果你还没有创建房间，请前往“创建房间”选项卡，在那里你需要选择房间ID。
       <hr>
-      If a room has been created, goto "Join Room" tab, in which you need to select your user name and set a password.
-      If the user name hasn't been created in this room, a new user will be initialized.
+      如果房间已经创建，请前往“加入房间”选项卡，在那里你需要选择玩家ID并设置密码。如果该房间中尚未创建此玩家ID，将会初始化一个新玩家。
     </div>
   </div>
 </template>

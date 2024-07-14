@@ -22,9 +22,9 @@
     <div class="title">God of Avalon</div>
     <br />
     <div class="links">
-      <router-link class="link" to="/">Home Page</router-link>
-      <router-link class="link" to="/createroom">Create Room</router-link>
-      <router-link class="link" to="/joinroom">Join Room</router-link>
+      <router-link class="link" to="/">主页</router-link>
+      <router-link class="link" to="/createroom">创建房间</router-link>
+      <router-link class="link" to="/joinroom">加入房间</router-link>
     </div>
     <hr id="theOnlyHr">
     <!--
@@ -149,7 +149,7 @@ button {
 
 .link {
   text-decoration: none;
-  padding: 7px 10px 7px 10px;
+  padding: 12px 10px 8px 10px;
   margin: 0px 0px;
   border-radius: 0px;
   border-left: 0.5px solid rgba(255, 255, 255, 1);

@@ -20,10 +20,10 @@
 <template>
   <div>
     <div class="container">
-      <div class="subtitle">Room ID</div>
-      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
+      <div class="subtitle">房间ID</div>
+      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
       <br />
-      <button v-on:click="createRoom">Create Room</button>
+      <button v-on:click="createRoom">创建房间</button>
       <br />
       <div>{{ info }}</div>
     </div>
@@ -48,7 +48,7 @@ export default {
   methods: {
     createRoom () {
       if (this.validRoomId === '') {
-        this.info = 'Room ID cannot be empty!'
+        this.info = '房间ID不能为空！'
         return
       }
       this.info = ''

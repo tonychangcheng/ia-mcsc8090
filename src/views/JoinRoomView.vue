@@ -20,17 +20,17 @@
 <template>
   <div>
     <div class="container">
-      <div class="subtitle">Room ID</div>
-      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="Room ID" />
+      <div class="subtitle">房间ID</div>
+      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
       <br />
-      <div class="subtitle">User ID</div>
-      <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="User ID" />
+      <div class="subtitle">玩家ID</div>
+      <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
       <br />
-      <div class="subtitle">User Password</div>
-      <div>DO NOT USE YOUR COMMON PASSWORD</div>
-      <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="User Password" />
+      <div class="subtitle">玩家密码</div>
+      <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="玩家密码" />
+      <div>*不要使用你的常用密码，密码会被明文传输</div>
       <br />
-      <button v-on:click="joinRoom">Join Room</button>
+      <button v-on:click="joinRoom">加入房间</button>
       <br />
       <div>{{ info }}</div>
     </div>
@@ -60,15 +60,16 @@ export default {
   methods: {
     joinRoom () {
       if (this.validRoomId === '') {
-        this.info = 'Room ID cannot be empty!'
+        this.info = '房间ID不能为空！'
         return
       }
       if (this.validUserId === '') {
-        this.info = 'User ID cannot be empty!'
+        this.info = '玩家ID不能为空！'
         return
       }
-      if (this.validUserPsw === '')
-        this.info = 'Password cannot be empty!'
+      if (this.validUserPsw === '') {
+        this.info = '密码不能为空！'
+      }
       //将validRoomId和validRoomPsw发送到后端
       //是否存在
       //console.log(`${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`)
