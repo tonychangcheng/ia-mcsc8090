@@ -84,10 +84,10 @@ export default {
             return
           }
           if (tReData === 'createdUser') {
-            this.info = 'Successfully Create User'
+            this.info = '成功创建玩家'
           }
           if (tReData === 'userExistAndValid') {
-            this.info = 'Successfully Login'
+            this.info = '成功登录'
           }
           axios({
             method: 'get',

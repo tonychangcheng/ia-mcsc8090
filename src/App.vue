@@ -62,10 +62,18 @@ hr {
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: rgba(13, 25, 31, 1);
-}
+      margin: 0;
+      padding: 0;
+      background: 
+        linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)), /* 保持基本背景颜色 */
+        linear-gradient(155deg, rgba(255, 255, 255, 0.01) 25%, transparent 10%) -200px 0,
+        linear-gradient(245deg, rgba(255, 255, 255, 0.01) 25%, transparent 10%) -200px 0,
+        linear-gradient(335deg, rgba(255, 255, 255, 0.01) 25%, transparent 10%),
+        linear-gradient(65deg, rgba(255, 255, 255, 0.01) 25%, transparent 10%);
+      background-size: 400px 400px;
+      background-blend-mode: overlay; /* 使图案与背景颜色融合 */
+      background-repeat: repeat; /* 确保图案重复 */
+    }
 
 input {
   background: rgba(255, 255, 255, 0.05);
@@ -142,21 +150,23 @@ button {
 .links {
   margin: 0 auto;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 1);
-  padding: 7px 0px 6px 0px;
+  border-left: 1px solid rgba(255, 255, 255, 1);
+  border-right: 1px solid rgba(255, 255, 255, 1);
+  padding: 5px 0px 6px 0px;
   width: fit-content;
 }
 
 .link {
   text-decoration: none;
-  padding: 12px 10px 8px 10px;
+  padding: 10px 10px 8px 10px;
   margin: 0px 0px;
   border-radius: 0px;
-  border-left: 0.5px solid rgba(255, 255, 255, 1);
-  border-right: 0.5px solid rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 1);
+  border-right: 1px solid rgba(255, 255, 255, 1);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
   }
 
   &:active {

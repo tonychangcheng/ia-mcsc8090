@@ -39,7 +39,7 @@
         <summary>
           <div class="subtitle">你的角色（点击以展示/隐藏）</div>
         </summary>
-        <div>{{ userRole }}</div>
+        <div>{{ chineseRoleName }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
         <div v-for="user in usersUserSee">{{ user.userId }}</div>
       </details>
@@ -59,9 +59,9 @@
     <div id="votepart" class="hidden container">
       <div class="subtitle">{{ votetitle }}</div>
       <div>{{ votecontent }}</div>
-      <button v-on:click="chooseYes">是</button>
-      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">否</button>
-      <div id="confirmchoiceinfo" class="hidden">你选择了 "{{ userChoice }}"</div>
+      <button v-on:click="chooseYes">✔️</button>
+      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">❌</button>
+      <div id="confirmchoiceinfo" class="hidden">你选择了 "{{ userChoiceEmoji }}"</div>
       <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">确认</button>
     </div>
 
@@ -116,6 +116,7 @@ export default {
       votetitle: 'this is vote title',
       votecontent: 'this is vote content',
       userChoice: 'Yes',
+      userChoiceEmoji: '✔️',
       token: '',
     }
   },
@@ -154,6 +155,19 @@ export default {
       ];
       // let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
+    },
+    chineseRoleName: function () {
+      let roleName = {
+        'Merlin': '梅林',
+        'Percival': '派西维尔',
+        'Mordred': '莫德雷德',
+        'Morgana': '莫甘娜',
+        'Assassin': '刺客',
+        'Loyal Servant of Arther': '亚瑟的忠臣',
+        'Oberon': '奥伯伦',
+        'Minion of Mordred': '莫德雷德的爪牙'
+      }
+      return roleName[this.userRole]
     },
     server () {
       return this.$store.state.server
@@ -222,11 +236,13 @@ export default {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'yes'
+      this.userChoiceEmoji='✔️'
     },
     chooseNo () {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'no'
+      this.userChoiceEmoji='❌'
     },
     confirmChoice () {
       axios({
@@ -376,12 +392,12 @@ export default {
         let roleUserSees = {
           'Merlin': '你知道的坏人',
           'Percival': '一个是梅林，另一个是莫甘娜',
-          'Mordred': '你知道的坏人',
-          'Morgana': '你知道的坏人',
-          'Assassin': '你知道的坏人',
+          'Mordred': '你的邪恶队友',
+          'Morgana': '你的邪恶队友',
+          'Assassin': '你的邪恶队友',
           'Loyal Servant of Arther': '', // 对于亚瑟的忠臣，没有额外信息
-          'Oberon': '', // 对于奥伯伦，没有额外信息
-          'Minion of Mordred': '你知道的坏人'
+          'Oberon': '你是奥伯伦，你不知道你的邪恶队友是谁', // 对于奥伯伦，没有额外信息
+          'Minion of Mordred': '你的邪恶队友'
         }
         this.roleUserSee = roleUserSees[this.userRole]
 
