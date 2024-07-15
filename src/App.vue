@@ -22,9 +22,12 @@
     <div class="title">God of Avalon</div>
     <br />
     <div class="links">
-      <router-link class="link" to="/">主页</router-link>
-      <router-link class="link" to="/createroom">创建房间</router-link>
-      <router-link class="link" to="/joinroom">加入房间</router-link>
+      <router-link class="link" style="border-left: 1px solid rgba(255, 255, 255, 1); " to="/">主页</router-link>
+      <router-link class="link"
+        style="border-left: 1px solid rgba(255, 255, 255, 1); border-right: 1px solid rgba(255, 255, 255, 1);"
+        to="/createroom">创建房间</router-link>
+      <router-link class="link" style="border-right: 1px solid rgba(255, 255, 255, 1); "
+        to="/joinroom">加入房间</router-link>
     </div>
     <hr id="theOnlyHr">
     <!--
@@ -62,45 +65,66 @@ hr {
 }
 
 body {
-      margin: 0;
-      padding: 0;
-      background: 
-        linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)), /* 保持基本背景颜色 */
-        linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
-        linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
-        linear-gradient(335deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%),
-        linear-gradient(65deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%);
-      background-size: 150px 150px;
-      background-blend-mode: overlay; /* 使图案与背景颜色融合 */
-      background-repeat: repeat; /* 确保图案重复 */
-    }
+  margin: 0;
+  padding: 0;
+  background:
+    linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)),
+    /* 保持基本背景颜色 */
+    linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
+    linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
+    linear-gradient(335deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%),
+    linear-gradient(65deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%);
+  background-size: 150px 150px;
+  background-blend-mode: overlay;
+  /* 使图案与背景颜色融合 */
+  background-repeat: repeat;
+  /* 确保图案重复 */
+}
 
 input {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   font-size: large;
   outline: none;
   padding: 10px 15px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  margin-top: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
 button {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
   padding: 10px 20px;
   margin: 10px 5px;
+  color: #fff;
+  font-size: normal;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-  }
+button:hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
 
-  &:active {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-  }
+button:active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .title {
@@ -148,11 +172,9 @@ button {
 }
 
 .links {
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   text-align: center;
-  border-left: 1px solid rgba(255, 255, 255, 1);
-  border-right: 1px solid rgba(255, 255, 255, 1);
-  padding: 5px 0px 6px 0px;
+  padding: 0;
   width: fit-content;
 }
 
@@ -162,8 +184,6 @@ button {
   margin: 0px 0px;
   border-radius: 0px;
   background: rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 1);
-  border-right: 1px solid rgba(255, 255, 255, 1);
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
