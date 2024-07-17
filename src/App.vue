@@ -19,6 +19,7 @@
 
 <template>
   <div id="app">
+    <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
     <div class="title">God of Avalon</div>
     <br />
     <div class="links">

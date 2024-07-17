@@ -1,4 +1,4 @@
-# God of Avalon Frontend
+# God of Avalon Frontend | Play Avalon Online | 线上阿瓦隆 | 阿瓦隆发牌助手
 
 ## Project setup
 
