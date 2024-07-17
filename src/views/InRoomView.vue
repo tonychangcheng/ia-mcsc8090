@@ -429,7 +429,7 @@ export default {
       //get all room info
       this.updateroominfoAndRender()
 
-    }, 1000)
+    }, 2000)
 
     this.updatemessages()
     this.updateroominfoAndRender()

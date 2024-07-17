@@ -102,14 +102,7 @@ export default {
           this.$router.push({ path: '/inroom' })
         })
     },
-  },
-  mounted: function () {
-    this.roomId = localStorage.getItem('roomId')
-    this.userId = localStorage.getItem('userId')
-    this.userPsw = localStorage.getItem('userPsw')
-    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
-
-    setInterval(() => {//update room info
+    updateRoomInfo(){
       axios({
         method: 'get',
         url: `${this.server}/wait/${this.roomId}/${this.userId}/${this.userPsw}/`,
@@ -136,7 +129,18 @@ export default {
             this.$router.push({ path: '/inroom' })
           }
         })
-    }, 1000)
+    }
+  },
+  mounted: function () {
+    this.roomId = localStorage.getItem('roomId')
+    this.userId = localStorage.getItem('userId')
+    this.userPsw = localStorage.getItem('userPsw')
+    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
+    this.updateRoomInfo()
+    setInterval(() => {//update room info
+      this.updateRoomInfo()
+    }, 2000)
+    this.updateRoomInfo()
   }
 }
 </script>
