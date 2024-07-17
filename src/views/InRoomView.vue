@@ -88,7 +88,7 @@
 
       <br />
 
-      <button v-on:click="doQuestNew">发起任务队伍投票</button>
+      <button v-on:click="doQuestNew" :class="{ disabledButton: selectedUsers.length < 2 }">发起任务队伍投票</button>
     </div>
 
 
