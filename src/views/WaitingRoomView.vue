@@ -131,8 +131,12 @@ export default {
           } else {
             startRoomButton.classList.remove('disabledButton')
           }
+
+          if(response.data['roomstatus']=='started'){
+            this.$router.push({ path: '/inroom' })
+          }
         })
-    }, 2000)
+    }, 1000)
   }
 }
 </script>

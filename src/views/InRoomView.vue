@@ -423,120 +423,13 @@ export default {
     this.updateroominfoAndRender()
 
     setInterval(() => {
-      //get message pull
-      /*
-      axios({
-          method: 'get',
-          url: `${this.server}/messagecount/${this.roomId}/`,
-      })
-          .then((response) => {
-              //console.log(response.data)
-              if (this.messagecount === response.data) return
-              votepart.classList.add('hidden')
-
-              this.messagecount = response.data
-              let tempmessage = []
-              let t = new Date().getTime()
-              for (let messagei = 1; messagei <= response.data; messagei++) {
-                  t += 50
-                  while (new Date().getTime() < t) { }
-                  axios({
-                      method: 'get',
-                      url: `${this.server}/message/${this.roomId}/${this.userId}/${this.userPsw}/${messagei}/`
-                  })
-                      .then((response) => {
-                          console.log(response.data)
-                          tempmessage.push(response.data)
-                      })
-                  //this.messages = tempmessage
-                  console.log(tempmessage)
-              }
-          })
-      */
       //new message pull
       this.updatemessages()
 
       //get all room info
       this.updateroominfoAndRender()
 
-      /*
-      //get build vote pull
-      axios({
-          method: 'get',
-          url: `${this.server}/anybuild/${this.roomId}/${this.userId}/${this.userPsw}/`,
-      })
-          .then((response) => {
-              //console.log('build:' + response.data)
-              if (response.data === 'True') {
-                  this.votetitle = 'Team Building Proposal'
-                  axios({
-                      method: 'get',
-                      url: `${this.server}/votecontent/${this.roomId}/${this.userId}/${this.userPsw}/`
-                  })
-                      .then((response) => {
-                          if (response.data != this.votecontent) this.votecontent = response.data
-
-                          //console.log(response.data)
-                      })
-                  this.ongoingvote = true
-              } else {
-                  //get quest vote pull
-                  axios({
-                      method: 'get',
-                      url: `${this.server}/anyquest/${this.roomId}/${this.userId}/${this.userPsw}/`,
-                  })
-                      .then((response) => {
-                          //console.log('quest:' + response.data)
-                          if (response.data === 'True') {
-                              this.votetitle = 'Quest Proposal'
-                              axios({
-                                  method: 'get',
-                                  url: `${this.server}/votecontent/${this.roomId}/${this.userId}/${this.userPsw}/`
-                              })
-                                  .then((response) => {
-                                      if (response.data != this.votecontent) this.votecontent = response.data
-
-                                      //console.log(response.data)
-                                  })
-                              this.ongoingvote = true
-                          } else {//no vote
-                              this.ongoingvote = false
-                          }
-                      })
-              }
-          })
-      //voted?
-      axios({
-          method: 'get',
-          url: `${this.server}/voted/${this.roomId}/${this.userId}/${this.userPsw}/`,
-      })
-          .then((response) => {
-              this.voted = response.data === 'True'
-              //console.log(this.voted)
-          })
-
-      //disable no button
-      let ul = this.userRole
-      if ((ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') || this.votetitle === 'Team Building Proposal') {
-          document.getElementById('nobutton').classList.remove('disabledButton')
-      } else {
-          document.getElementById('nobutton').classList.add('disabledButton')
-      }
-
-      if (this.ongoingvote) {
-          document.getElementById('teambuilding').classList.add('hidden')
-          if (this.voted) {
-              document.getElementById('votepart').classList.add('hidden')
-          } else {
-              document.getElementById('votepart').classList.remove('hidden')
-          }
-      } else {
-          document.getElementById('teambuilding').classList.remove('hidden')
-          document.getElementById('votepart').classList.add('hidden')
-      }
-      */
-
-    }, this.server === 'http://59.78.35.89:7999' ? 100 : 4000)
+    }, 1000)
 
     this.updatemessages()
     this.updateroominfoAndRender()
