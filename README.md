@@ -1,5 +1,7 @@
 # God of Avalon Frontend | Play Avalon Online | 线上阿瓦隆 | 阿瓦隆发牌助手
 
+The deployed website is available at [God of Avalon](https://goa.zpatronus.top/)
+
 ## Project setup
 
 ```
