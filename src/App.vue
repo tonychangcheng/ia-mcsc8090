@@ -66,22 +66,26 @@ hr {
 }
 
 body {
+  --bg-size: clamp(150px, 10vw, 300px);
+  --bg-offset: calc(var(--bg-size) / -2);
+
   margin: 0;
   padding: 0;
   background:
     linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)),
     /* 保持基本背景颜色 */
-    linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
-    linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) -75px 0,
+    linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
+    linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
     linear-gradient(335deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%),
     linear-gradient(65deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%);
-  background-size: 150px 150px;
   background-blend-mode: overlay;
   /* 使图案与背景颜色融合 */
   background-repeat: repeat;
   /* 确保图案重复 */
+  background-attachment: fixed;
+  /* 背景图案固定 */
+  background-size: var(--bg-size) var(--bg-size);
 }
-
 input {
   background: rgba(255, 255, 255, 0.1);
   font-size: large;
