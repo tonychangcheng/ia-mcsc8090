@@ -159,11 +159,11 @@ button:active {
 }
 
 .green {
-  color: #009fe0;
+  color: rgb(0, 160, 224);
 }
 
 .red {
-  color: #e07600;
+  color: rgb(224, 118, 0);
 }
 
 .hidden {

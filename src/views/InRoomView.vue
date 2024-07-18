@@ -48,11 +48,13 @@
     <div class="container">
       <div class="subtitle">历史记录</div>
       <div v-for="message in messages">
-        <hr>
-        <div class="subsubtitle">{{ message.messagetitle }}</div>
-        <div>{{ message.messageusers }}</div>
-        <div class="green">{{ message.message1users }}</div>
-        <div class="red">{{ message.message2users }}</div>
+        <div :style="getBackgroundStyle(message)">
+          <hr style="margin: 0 0 8px 0">
+          <div class="subsubtitle">{{ message.messagetitle }}</div>
+          <div>{{ message.messageusers }}</div>
+          <div class="green">{{ message.message1users }}</div>
+          <div class="red">{{ message.message2users }}</div>
+        </div>
       </div>
     </div>
 
@@ -174,6 +176,30 @@ export default {
     },
   },
   methods: {
+    getBackgroundStyle (message) {
+      const { messagetitle, message2users } = message;
+      const containsTeam = messagetitle.includes('Team') || messagetitle.includes('队伍');
+      const startsWithZero = message2users[0] === '0';
+
+      if (containsTeam) {
+        // 如果包含“Team”或“队伍”，则不需要任何背景
+        return {
+          padding: '0 0 8px 0'
+        };
+      } else if (startsWithZero) {
+        // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符是0
+        return {
+          padding: '0 0 8px 0',
+          background: 'linear-gradient(to left, rgba(0, 160, 224, 0.2), rgba(0, 0, 0, 0))'
+        };
+      } else {
+        // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符不是0
+        return {
+          padding: '0 0 8px 0',
+          background: 'linear-gradient(to left, rgba(224, 118, 0, 0.2), rgba(0, 0, 0, 0))'
+        };
+      }
+    },
     ///////////////////////////////////////////// no longer used
     doQuest () {
       //console.log(this.selectedUsers.length)
@@ -236,13 +262,13 @@ export default {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'yes'
-      this.userChoiceEmoji='✔️'
+      this.userChoiceEmoji = '✔️'
     },
     chooseNo () {
       document.getElementById('confirmchoiceinfo').classList.remove('hidden')
       document.getElementById('confirmchoicebutton').classList.remove('hidden')
       this.userChoice = 'no'
-      this.userChoiceEmoji='❌'
+      this.userChoiceEmoji = '❌'
     },
     confirmChoice () {
       axios({
