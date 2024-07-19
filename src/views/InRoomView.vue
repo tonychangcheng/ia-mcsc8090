@@ -30,7 +30,7 @@
   -->
       <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      <div class="subtitle">任务队成员数量</div>
+      <div class="subtitle">任务队伍成员数量</div>
       <div>{{ teamBuildingPhase }}</div>
     </div>
 

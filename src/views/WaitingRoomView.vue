@@ -32,7 +32,7 @@
     <div class="container">
       <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      <div class="subtitle">任务队成员数量</div>
+      <div class="subtitle">任务队伍成员数量</div>
       <div>{{ teamBuildingPhase }}</div>
     </div>
     <button id="startGameButton" v-on:click="startGame" class="disabledButton">开始游戏</button>
