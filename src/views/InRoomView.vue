@@ -350,6 +350,7 @@ export default {
           //build
           if (re['roomfurtherstatus'] === 'build') {
             this.showbuildcontainer = false
+            this.selectedUsers=[]
             if (this.votetitle != re['votetitle']) {
               this.votetitle = re['votetitle']
               this.votecontent = re['votecontent']
