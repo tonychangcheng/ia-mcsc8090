@@ -45,15 +45,17 @@
       </details>
     </div>
 
-    <div class="container">
+    <div class="container" style="padding:0">
       <div class="subtitle">历史记录</div>
       <div v-for="message in messages">
         <div :style="getBackgroundStyle(message)">
-          <hr style="margin: 0 0 8px 0">
-          <div class="subsubtitle">{{ message.messagetitle }}</div>
-          <div>{{ message.messageusers }}</div>
-          <div class="green">{{ message.message1users }}</div>
-          <div class="red">{{ message.message2users }}</div>
+          <div style="padding:0 7px 0 7px">
+            <hr style="margin: 0 0 8px 0">
+            <div class="subsubtitle">{{ message.messagetitle }}</div>
+            <div>{{ message.messageusers }}</div>
+            <div class="green">{{ message.message1users }}</div>
+            <div class="red">{{ message.message2users }}</div>
+          </div>
         </div>
       </div>
     </div>
