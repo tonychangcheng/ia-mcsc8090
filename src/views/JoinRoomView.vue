@@ -84,10 +84,10 @@ export default {
             return
           }
           if (tReData === 'createdUser') {
-            this.info = '成功创建玩家'
+            this.info = '成功创建玩家，跳转中...'
           }
           if (tReData === 'userExistAndValid') {
-            this.info = '成功登录'
+            this.info = '成功登录，跳转中...'
           }
           axios({
             method: 'get',
