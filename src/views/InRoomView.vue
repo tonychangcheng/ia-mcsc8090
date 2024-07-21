@@ -69,7 +69,7 @@
       <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">确认</button>
     </div>
 
-    <div class="container" id="teambuilding">
+    <div class="container hidden" id="teambuilding">
       <div class="subtitle">组建任务队伍</div>
 
       <div v-for="user in users">
@@ -295,7 +295,7 @@ export default {
           let tempmessage = []
           let messagecount = data['messagecount']
           if (messagecount === this.messagecount) return
-          votepart.classList.add('hidden')
+          // votepart.classList.add('hidden')
           this.messagecount = messagecount
           for (let messageid = 1; messageid <= messagecount; messageid++) {
             tempmessage.push({ 'messagetitle': data[`messagetitle${messageid}`], 'messageusers': data[`messageusers${messageid}`], 'message1users': data[`message1users${messageid}`], 'message2users': data[`message2users${messageid}`] })
