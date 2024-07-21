@@ -143,10 +143,10 @@ button:active {
   margin-top: 0.7rem;
   margin-bottom: 0.5rem;
   font-size: large;
-  font-style: italic;
+  // font-style: italic;
   font-weight: bold;
   text-align: center;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 .disabledButton {
