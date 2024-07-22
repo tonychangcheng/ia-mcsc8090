@@ -35,13 +35,13 @@
     </div>
 
     <div class="container">
-      <details>
+      <details ref="details" @toggle="toggleDetails">
         <summary>
-          <div class="subtitle">你的角色（点击以展示/隐藏）</div>
+          <div class="subtitle">{{ summaryText }}</div>
         </summary>
         <div>{{ chineseRoleName }}</div>
         <div class="subtitle">{{ roleUserSee }}</div>
-        <div v-for="user in usersUserSee">{{ user.userId }}</div>
+        <div>{{ userSeeString }}</div>
       </details>
     </div>
 
@@ -105,6 +105,7 @@ export default {
   name: 'InRoomView',
   data () {
     return {
+      summaryText: '你的角色（点击以展示）',
       roomId: '',
       userId: '',
       userPsw: '',
@@ -126,6 +127,9 @@ export default {
     }
   },
   computed: {
+    userSeeString() {
+      return this.usersUserSee.map(user => user.userId).join(', ');
+    },
     template: function () {
       if (this.userCount < 5) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
@@ -163,14 +167,14 @@ export default {
     },
     chineseRoleName: function () {
       let roleName = {
-        'Merlin': '梅林',
-        'Percival': '派西维尔',
-        'Mordred': '莫德雷德',
-        'Morgana': '莫甘娜',
-        'Assassin': '刺客',
-        'Loyal Servant of Arther': '亚瑟的忠臣',
-        'Oberon': '奥伯伦',
-        'Minion of Mordred': '莫德雷德的爪牙'
+        'Merlin': '梅林🧙‍♂️',
+        'Percival': '派西维尔🛡️',
+        'Mordred': '莫德雷德👹',
+        'Morgana': '莫甘娜😈',
+        'Assassin': '刺客🔪',
+        'Loyal Servant of Arther': '亚瑟的忠臣🙌',
+        'Oberon': '奥伯伦👻',
+        'Minion of Mordred': '莫德雷德的爪牙💀'
       }
       return roleName[this.userRole]
     },
@@ -179,6 +183,9 @@ export default {
     },
   },
   methods: {
+    toggleDetails() {
+      this.summaryText='你的角色（'+(this.$refs.details.open ? '点击以隐藏' : '点击以展示')+'）'
+    },
     getBackgroundStyle (message) {
       const { messagetitle, message2users } = message;
       const containsTeam = messagetitle.includes('Team') || messagetitle.includes('队伍');

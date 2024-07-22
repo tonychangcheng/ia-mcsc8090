@@ -183,12 +183,15 @@ button:active {
   width: fit-content;
 }
 
+
+
 .link {
   text-decoration: none;
   padding: 10px 10px 8px 10px;
   margin: 0px 0px;
   border-radius: 0px;
   background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s, color 0.3s; // Smooth transition effects
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
@@ -210,5 +213,54 @@ button:active {
   padding: 0 7px 7px 7px;
   border-radius: 2px;
   margin: 10px auto;
+}
+</style>
+
+
+<style>
+/* Insert the custom scrollbar CSS here */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(21, 30, 36, 1); /* Match the site's dark background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.7); /* Dark grey color for the thumb */
+  border-radius: 10px; /* Rounded corners on the thumb */
+  border: 2px solid rgba(21, 30, 36, 1); /* Border to blend into the dark background */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(150, 150, 150, 0.9); /* Lighter grey color when hovering */
+}
+
+/* For Firefox */
+body {
+  scrollbar-width: thin; /* Thin scrollbar width */
+  scrollbar-color: rgba(100, 100, 100, 0.7) rgba(21, 30, 36, 1); /* Dark thumb color and dark background */
+}
+
+/* Custom element to show scrollbar styling */
+.element-with-scrollbar {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 200px; /* Limit height for the example */
+  background-color: rgba(21, 30, 36, 1); /* Matching dark background */
+  color: white; /* Light text for contrast */
+  padding: 10px; /* Padding for content */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Optional border for visual separation */
+}
+
+/* Optional: Hiding the scrollbar entirely but keep functionality */
+.element-with-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.element-with-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 </style>
