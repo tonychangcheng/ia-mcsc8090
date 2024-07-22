@@ -53,8 +53,8 @@
             <hr style="margin: -2px 0 7px 0">
             <div class="subsubtitle">{{ message.messagetitle }}</div>
             <div>{{ message.messageusers }}</div>
-            <div class="green" >{{ message.message1users }}</div>
-            <div class="red" >{{ message.message2users }}</div>
+            <div class="green">{{ message.message1users }}</div>
+            <div class="red">{{ message.message2users }}</div>
           </div>
         </div>
       </div>
@@ -72,18 +72,13 @@
     <div class="container hidden" id="teambuilding">
       <div class="subtitle">组建任务队伍</div>
 
-      <div v-for="user in users">
+      <div v-for="user in users" style="display: flex;">
 
-        <div class="checkbox-wrapper-60">
-          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers"
-            @change="changeTeamUser" />
-          <label :for="user.userId" class="label">
+        <div class="checkbox-wrapper-60" style="margin-right: auto ; ">
+          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers" @change="changeTeamUser" />
+          <label :for="user.userId" style="margin-right: auto; " class="label">
             <svg viewBox="0 0 65 65" height="30" width="30">
               <rect x="7" y="7" width="50" height="50" stroke="white" fill="none" />
-              <!-- <g transform="translate(-23,-967.36216)" id="layer1-60">
-                <path id="path4146" d="m 55,978 c -73,19 46,71 15,2 C 60,959 13,966 30,1007 c 12,30 61,13 46,-23"
-                  fill="none" stroke="white" stroke-width="3" class="path1" />
-              </g> -->
               <g transform="translate(-15,-970.36222)">
                 <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 "
                   stroke="white" stroke-width="3" fill="none" class="path1" />
@@ -91,12 +86,15 @@
             </svg>
             <span> {{ user.userId }}</span>
           </label>
-
-          <div style="display:inline">
-            <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;"
-              @click="toggleGrayscale($event)">{{ emoji }}</div>
-          </div>
         </div>
+
+        <div
+          style=" font-size: 1.5rem;  line-height: 2rem; margin-bottom: 0.5rem;">
+          <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;"
+            @click="toggleGrayscale($event)">{{ emoji }}</div>
+        </div>
+
+
 
       </div>
 
@@ -136,7 +134,7 @@ export default {
       userChoice: 'Yes',
       userChoiceEmoji: '✔️',
       token: '',
-      info:'',
+      info: '',
     }
   },
   computed: {
@@ -238,7 +236,7 @@ export default {
       for (let useri = 0; useri < re['teammembercount']; useri++) {
         re[`teammember${useri + 1}`] = this.selectedUsers[useri]
       }
-      this.info='提交任务队伍提名中...'
+      this.info = '提交任务队伍提名中...'
       axios({
         headers: {
           'X-CSRFToken': this.token,
@@ -255,7 +253,7 @@ export default {
 
           //get all room info
           this.updateroominfoAndRender()
-          this.info=''
+          this.info = ''
         })
     },
     chooseYes () {
@@ -271,7 +269,7 @@ export default {
       this.userChoiceEmoji = '❌'
     },
     confirmChoice () {
-      this.info='提交投票中...'
+      this.info = '提交投票中...'
       axios({
         method: 'get',
         url: `${this.server}/vote/${this.roomId}/${this.userId}/${this.userPsw}/${this.userChoice}`
@@ -281,7 +279,7 @@ export default {
           document.getElementById('confirmchoicebutton').classList.add('hidden')
           document.getElementById('votepart').classList.add('hidden')
           document.getElementById('teambuilding').classList.add('hidden')
-          this.info=''
+          this.info = ''
         })
     },
     updatemessages () {
@@ -467,10 +465,6 @@ export default {
 }
 </script>
 <style>
-label {
-  width: 100%;
-}
-
 .grayscale {
   filter: grayscale(100%);
   opacity: 0.2;
@@ -498,6 +492,8 @@ label {
   display: flex;
   overflow: hidden;
   margin-bottom: 0.5rem;
+
+  box-sizing: border-box;
 }
 
 
