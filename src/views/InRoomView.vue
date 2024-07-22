@@ -53,8 +53,8 @@
             <hr style="margin: 0 0 8px 0">
             <div class="subsubtitle">{{ message.messagetitle }}</div>
             <div>{{ message.messageusers }}</div>
-            <div class="green">{{ message.message1users }}</div>
-            <div class="red">{{ message.message2users }}</div>
+            <div class="green" style="display:inline">{{ message.message1users }}</div> | 
+            <div class="red" style="display:inline">{{ message.message2users }}</div>
           </div>
         </div>
       </div>
