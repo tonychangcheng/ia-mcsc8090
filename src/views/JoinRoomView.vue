@@ -70,6 +70,7 @@ export default {
       if (this.validUserPsw === '') {
         this.info = '密码不能为空！'
       }
+      this.info = '加入房间中...'
       //将validRoomId和validRoomPsw发送到后端
       //是否存在
       //console.log(`${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`)

@@ -51,7 +51,7 @@ export default {
         this.info = '房间ID不能为空！'
         return
       }
-      this.info = ''
+      this.info = '创建房间中...'
       //将validRoomId和validRoomPsw发送到后端
       //是否存在
       //console.log(`${this.server}/create/${this.validRoomId}/${this.validRoomPsw}/`)
@@ -63,7 +63,10 @@ export default {
           console.log(response.data)
           if (response.data === 'createdRoom') {
             this.updateRoomInfo()
-            this.$router.push({ path: '/joinroom' })
+            this.info = '创建成功，跳转中...'
+            setTimeout(() => {
+              this.$router.push({ path: '/joinroom' })
+            }, 1000);
           } else {
             this.info = response.data
           }
