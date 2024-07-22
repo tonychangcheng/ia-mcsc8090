@@ -79,13 +79,21 @@
           <label :for="user.userId" class="label">
             <svg viewBox="0 0 65 65" height="30" width="30">
               <rect x="7" y="7" width="50" height="50" stroke="white" fill="none" />
-              <g transform="translate(-23,-967.36216)" id="layer1-60">
+              <!-- <g transform="translate(-23,-967.36216)" id="layer1-60">
                 <path id="path4146" d="m 55,978 c -73,19 46,71 15,2 C 60,959 13,966 30,1007 c 12,30 61,13 46,-23"
                   fill="none" stroke="white" stroke-width="3" class="path1" />
+              </g> -->
+              <g transform="translate(-15,-970.36222)">
+                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 "
+                  stroke="white" stroke-width="3" fill="none" class="path1" />
               </g>
             </svg>
             <span> {{ user.userId }}</span>
           </label>
+
+          <div style="display:inline">
+            <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;" @click="toggleGrayscale($event)">{{ emoji }}</div>
+          </div>
         </div>
 
       </div>
@@ -105,6 +113,7 @@ export default {
   name: 'InRoomView',
   data () {
     return {
+      emojis: ['🟦',  '🧙‍♂️', '🛡️', '🔪', '😈','🟧',],
       summaryText: '你的角色（点击以展示）',
       roomId: '',
       userId: '',
@@ -127,7 +136,7 @@ export default {
     }
   },
   computed: {
-    userSeeString() {
+    userSeeString () {
       return this.usersUserSee.map(user => user.userId).join(', ');
     },
     template: function () {
@@ -139,12 +148,12 @@ export default {
         '',
         '',
         '',
-        '梅林、派西维尔、莫甘娜、刺客、1名亚瑟的忠臣',
-        '梅林、派西维尔、莫甘娜、刺客、2名亚瑟的忠臣',
-        '梅林、派西维尔、莫甘娜、刺客、奥伯伦、2名亚瑟的忠臣',
-        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、3名亚瑟的忠臣（建议使用湖中仙女）',
-        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣（建议使用湖中仙女）',
-        '梅林、派西维尔、莫德雷德、莫甘娜、刺客、4名亚瑟的忠臣、莫德雷德的爪牙（建议使用湖中仙女）'
+        '梅林🧙‍♂️、派西维尔🛡️、莫甘娜😈、刺客🔪、1名亚瑟的忠臣🙌',
+        '梅林🧙‍♂️、派西维尔🛡️、莫甘娜😈、刺客🔪、2名亚瑟的忠臣🙌',
+        '梅林🧙‍♂️、派西维尔🛡️、莫甘娜😈、刺客🔪、奥伯伦👻、2名亚瑟的忠臣🙌',
+        '梅林🧙‍♂️、派西维尔🛡️、莫德雷德👹、莫甘娜😈、刺客🔪、3名亚瑟的忠臣🙌（建议使用湖中仙女）',
+        '梅林🧙‍♂️、派西维尔🛡️、莫德雷德👹、莫甘娜😈、刺客🔪、4名亚瑟的忠臣🙌（建议使用湖中仙女）',
+        '梅林🧙‍♂️、派西维尔🛡️、莫德雷德👹、莫甘娜😈、刺客🔪、4名亚瑟的忠臣🙌、莫德雷德的爪牙💀（建议使用湖中仙女）'
       ];
       // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
@@ -183,8 +192,11 @@ export default {
     },
   },
   methods: {
-    toggleDetails() {
-      this.summaryText='你的角色（'+(this.$refs.details.open ? '点击以隐藏' : '点击以展示')+'）'
+    toggleGrayscale(event) {
+            event.target.classList.toggle('grayscale');
+        },
+    toggleDetails () {
+      this.summaryText = '你的角色（' + (this.$refs.details.open ? '点击以隐藏' : '点击以展示') + '）'
     },
     getBackgroundStyle (message) {
       const { messagetitle, message2users } = message;
@@ -358,7 +370,7 @@ export default {
           //build
           if (re['roomfurtherstatus'] === 'build') {
             this.showbuildcontainer = false
-            this.selectedUsers=[]
+            this.selectedUsers = []
             if (this.votetitle != re['votetitle']) {
               this.votetitle = re['votetitle']
               this.votecontent = re['votecontent']
@@ -428,12 +440,12 @@ export default {
         this.userRole = response.data
         let roleUserSees = {
           'Merlin': '你知道的坏人',
-          'Percival': '一个是梅林，另一个是莫甘娜',
+          'Percival': '一个是梅林🧙‍♂️，另一个是莫甘娜😈',
           'Mordred': '你的邪恶队友',
           'Morgana': '你的邪恶队友',
           'Assassin': '你的邪恶队友',
-          'Loyal Servant of Arther': '', // 对于亚瑟的忠臣，没有额外信息
-          'Oberon': '你是奥伯伦，你不知道你的邪恶队友是谁', // 对于奥伯伦，没有额外信息
+          'Loyal Servant of Arther': '', // 对于亚瑟的忠臣🙌，没有额外信息
+          'Oberon': '你是奥伯伦👻，你不知道你的邪恶队友是谁', // 对于奥伯伦👻，没有额外信息
           'Minion of Mordred': '你的邪恶队友'
         }
         this.roleUserSee = roleUserSees[this.userRole]
@@ -477,6 +489,10 @@ export default {
 label {
   width: 100%;
 }
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.2;
+}
 </style>
 
 
@@ -517,7 +533,7 @@ label {
 .checkbox-wrapper-60 .path1 {
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
-  transition: .5s all;
+  transition: .3s all;
 }
 
 .checkbox-wrapper-60 .check:checked+label svg g path {
