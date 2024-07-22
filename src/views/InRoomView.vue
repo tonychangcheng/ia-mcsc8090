@@ -75,7 +75,8 @@
       <div v-for="user in users">
 
         <div class="checkbox-wrapper-60">
-          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers" />
+          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers"
+            @change="changeTeamUser" />
           <label :for="user.userId" class="label">
             <svg viewBox="0 0 65 65" height="30" width="30">
               <rect x="7" y="7" width="50" height="50" stroke="white" fill="none" />
@@ -92,16 +93,18 @@
           </label>
 
           <div style="display:inline">
-            <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;" @click="toggleGrayscale($event)">{{ emoji }}</div>
+            <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;"
+              @click="toggleGrayscale($event)">{{ emoji }}</div>
           </div>
         </div>
 
       </div>
 
       <br />
-
-      <button v-on:click="doQuestNew" :class="{ disabledButton: selectedUsers.length < 2 }">发起任务队伍投票</button>
+      <button v-on:click="preDoQuestNew" :class="{ disabledButton: selectedUsers.length < 2 }">确定任务队伍人选</button>
+      <button id="confirmBuildChoiceButton" v-on:click="doQuestNew" class="hidden">发起任务队伍投票</button>
     </div>
+    <div>{{ info }}</div>
 
 
     <div style="margin-bottom:100px"></div>
@@ -113,7 +116,7 @@ export default {
   name: 'InRoomView',
   data () {
     return {
-      emojis: ['🟦',  '🧙‍♂️', '🛡️', '🔪', '😈','🟧',],
+      emojis: ['🟦', '🧙‍♂️', '🛡️', '🔪', '😈', '🟧',],
       summaryText: '你的角色（点击以展示）',
       roomId: '',
       userId: '',
@@ -133,6 +136,7 @@ export default {
       userChoice: 'Yes',
       userChoiceEmoji: '✔️',
       token: '',
+      info:'',
     }
   },
   computed: {
@@ -192,9 +196,12 @@ export default {
     },
   },
   methods: {
-    toggleGrayscale(event) {
-            event.target.classList.toggle('grayscale');
-        },
+    changeTeamUser () {
+      document.getElementById('confirmBuildChoiceButton').classList.add('hidden')
+    },
+    toggleGrayscale (event) {
+      event.target.classList.toggle('grayscale');
+    },
     toggleDetails () {
       this.summaryText = '你的角色（' + (this.$refs.details.open ? '点击以隐藏' : '点击以展示') + '）'
     },
@@ -222,39 +229,8 @@ export default {
         };
       }
     },
-    ///////////////////////////////////////////// no longer used
-    doQuest () {
-      //console.log(this.selectedUsers.length)
-      let selectedUsersJSON = ''
-      let request = {}
-      for (let useri = 0; useri < this.selectedUsers.length; useri++) {
-        request['user' + useri] = this.selectedUsers[useri]
-      }
-      selectedUsersJSON = JSON.stringify(request)
-      document.getElementById('votepart').classList.add('hidden')
-      document.getElementById('teambuilding').classList.add('hidden')
-      axios({
-        method: 'get',
-        url: `${this.server}/buildteam/${this.roomId}/${this.userId}/${this.userPsw}/${this.selectedUsers.length}/`,
-      })
-        .then((response) => {
-          if (response.data === 'Start Build Team') {
-            let t = new Date().getTime()
-            for (let user of this.selectedUsers) {
-              //console.log(user)
-              t += 70
-              while (new Date().getTime() < t) { }
-              axios({
-                method: 'get',
-                url: `${this.server}/addteammember/${this.roomId}/${this.userId}/${this.userPsw}/${user}/`
-              })
-                .then((response) => {
-                  //console.log(response.data)
-                  //console.log(response.data === this.selectedUsers.length)
-                })
-            }
-          }
-        })
+    preDoQuestNew () {
+      document.getElementById('confirmBuildChoiceButton').classList.remove('hidden')
     },
     doQuestNew () {
       let re = {}
@@ -262,6 +238,7 @@ export default {
       for (let useri = 0; useri < re['teammembercount']; useri++) {
         re[`teammember${useri + 1}`] = this.selectedUsers[useri]
       }
+      this.info='提交任务队伍提名中...'
       axios({
         headers: {
           'X-CSRFToken': this.token,
@@ -278,6 +255,7 @@ export default {
 
           //get all room info
           this.updateroominfoAndRender()
+          this.info=''
         })
     },
     chooseYes () {
@@ -293,6 +271,7 @@ export default {
       this.userChoiceEmoji = '❌'
     },
     confirmChoice () {
+      this.info='提交投票中...'
       axios({
         method: 'get',
         url: `${this.server}/vote/${this.roomId}/${this.userId}/${this.userPsw}/${this.userChoice}`
@@ -302,6 +281,7 @@ export default {
           document.getElementById('confirmchoicebutton').classList.add('hidden')
           document.getElementById('votepart').classList.add('hidden')
           document.getElementById('teambuilding').classList.add('hidden')
+          this.info=''
         })
     },
     updatemessages () {
@@ -371,6 +351,7 @@ export default {
           if (re['roomfurtherstatus'] === 'build') {
             this.showbuildcontainer = false
             this.selectedUsers = []
+            document.getElementById('confirmBuildChoiceButton').classList.add('hidden')
             if (this.votetitle != re['votetitle']) {
               this.votetitle = re['votetitle']
               this.votecontent = re['votecontent']
@@ -489,9 +470,10 @@ export default {
 label {
   width: 100%;
 }
+
 .grayscale {
-    filter: grayscale(100%);
-    opacity: 0.2;
+  filter: grayscale(100%);
+  opacity: 0.2;
 }
 </style>
 

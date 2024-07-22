@@ -36,6 +36,7 @@
       <div>{{ teamBuildingPhase }}</div>
     </div>
     <button id="startGameButton" v-on:click="startGame" class="disabledButton">开始游戏</button>
+    <div>{{ info }}</div>
   </div>
 </template>
 <script>
@@ -49,6 +50,7 @@ export default {
       userPsw: '',
       users: [],
       userCount: 0,
+      info: ''
     }
   },
   computed: {
@@ -93,16 +95,17 @@ export default {
   },
   methods: {
     startGame () {
+      this.info = '正在开启游戏...'
       axios({
         method: 'get',
         url: `${this.server}/start/${this.roomId}/${this.userId}/${this.userPsw}/`
       })
         .then((response) => {
-          console.log(response.data)
+          this.info = '游戏已开启，跳转中...'
           this.$router.push({ path: '/inroom' })
         })
     },
-    updateRoomInfo(){
+    updateRoomInfo () {
       axios({
         method: 'get',
         url: `${this.server}/wait/${this.roomId}/${this.userId}/${this.userPsw}/`,
@@ -125,7 +128,8 @@ export default {
             startRoomButton.classList.remove('disabledButton')
           }
 
-          if(response.data['roomstatus']=='started'){
+          if (response.data['roomstatus'] == 'started') {
+            this.info = '游戏已开启，跳转中...'
             this.$router.push({ path: '/inroom' })
           }
         })
