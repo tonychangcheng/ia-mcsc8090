@@ -49,12 +49,12 @@
       <div class="subtitle">历史记录</div>
       <div v-for="message in messages">
         <div :style="getBackgroundStyle(message)">
-          <div style="padding:0 7px 0 7px">
-            <hr style="margin: 0 0 8px 0">
+          <div style="padding:0 7px 0 7px; line-height: 1.2rem">
+            <hr style="margin: -2px 0 7px 0">
             <div class="subsubtitle">{{ message.messagetitle }}</div>
             <div>{{ message.messageusers }}</div>
-            <div class="green" style="display:inline">{{ message.message1users }}</div> | 
-            <div class="red" style="display:inline">{{ message.message2users }}</div>
+            <div class="green" >{{ message.message1users }}</div>
+            <div class="red" >{{ message.message2users }}</div>
           </div>
         </div>
       </div>
