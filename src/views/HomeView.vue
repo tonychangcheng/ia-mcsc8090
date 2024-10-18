@@ -36,10 +36,7 @@
       <a href="https://forms.gle/g6kHoRVJ7qCBM5598">Google Form</a>。
       <hr>
       <b>支持这个网站：</b>
-      <br>
-      <a href="alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=5&userId=2088132693067140&memo=GodofAvalon"> 我的支付宝/Alipay（推荐，需要手机安装支付宝app）</a>
-      <br>
-      <a href="https://www.paypal.com/paypalme/zijunhz/0.7USD">我的PayPal（手续费巨高！）</a> 
+      <a href="https://www.paypal.com/paypalme/zijunhz/0.7USD">我的PayPal</a> 
       <br>
       God of Avalon是我在大二时苦于找不到合适的线上阿瓦隆平台、顺便练手Vue+Django的小项目。后续一直陆陆续续更新功能并上线公网。小服务器和域名每年成本大约60USD，并不高。如果能得到您的支持，我会非常感激，默认金额仅0.7USD，谢谢！
     </div>
