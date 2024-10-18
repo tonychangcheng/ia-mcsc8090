@@ -33,9 +33,13 @@
       如果房间已经创建，请前往“加入房间”选项卡，在那里你需要选择玩家ID并设置密码。如果该房间中尚未创建此玩家ID，将会初始化一个新玩家。
       <hr>
       <b>反馈：</b>如果你找到了bug，或者有任何想法，欢迎到这个项目的github repo新增issue（<a href="https://github.com/zpatronus/GodOfAvalon-frontend">前端</a>，<a href="https://github.com/zpatronus/GodOfAvalon-backend">后端</a>）；如果你不熟悉github，或者只是想留个言，也可以填写
-      <a href="https://forms.gle/obmGGtDLc6mWm3E89">Google Form</a>。
+      <a href="https://forms.gle/g6kHoRVJ7qCBM5598">Google Form</a>。
       <hr>
-      <b>支持这个网站：</b><a href="https://www.paypal.com/paypalme/zijunhz/0.7USD">我的PayPal</a>
+      <b>支持这个网站：</b>
+      <br>
+      <a href="alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=5&userId=2088132693067140&memo=GodofAvalon"> 我的支付宝/Alipay（推荐，需要手机安装支付宝app）</a>
+      <br>
+      <a href="https://www.paypal.com/paypalme/zijunhz/0.7USD">我的PayPal（手续费巨高！）</a> 
       <br>
       God of Avalon是我在大二时苦于找不到合适的线上阿瓦隆平台、顺便练手Vue+Django的小项目。后续一直陆陆续续更新功能并上线公网。小服务器和域名每年成本大约60USD，并不高。如果能得到您的支持，我会非常感激，默认金额仅0.7USD，谢谢！
     </div>
