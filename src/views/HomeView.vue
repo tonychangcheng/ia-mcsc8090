@@ -45,9 +45,9 @@
 <script>
 
 import axios from "axios"
-import Vue from "vue"
-import VueCookies from 'vue-cookies'
-Vue.use(VueCookies)
+// import Vue from "vue"
+// import VueCookies from 'vue-cookies'
+// Vue.use(VueCookies)
 axios.defaults.withCredentials = true
 export default {
   name: 'HomeView',

@@ -1,15 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createApp } from 'vue'; // Import createApp for Vue 3
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-Vue.config.productionTip = false
+const app = createApp(App); // Create the Vue 3 app instance
 
-//axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-//axios.defaults.xsrfCookieName = "csrftoken"
+// Apply the router and store to the app
+app.use(router);
+app.use(store);
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// Optionally, configure global settings (like axios settings, etc.)
+// app.config.globalProperties.$http = axios; 
+
+// Mount the app
+app.mount('#app');

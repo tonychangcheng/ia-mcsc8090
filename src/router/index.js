@@ -15,15 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // along with God of Avalon Frontend.  If not, see <http://www.gnu.org/licenses/>.
 
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import AboutView from '@/views/AboutView.vue'
-import HomeView from '../views/HomeView.vue'
-import CreateRoomView from '../views/CreateRoomView.vue'
-import JoinRoomView from '../views/JoinRoomView.vue'
-import WaitingRoomView from '../views/WaitingRoomView.vue'
-import InRoomView from '../views/InRoomView.vue'
-Vue.use(VueRouter)
+import { createRouter, createWebHistory } from 'vue-router';
+import AboutView from '@/views/AboutView.vue';
+import HomeView from '../views/HomeView.vue';
+import CreateRoomView from '../views/CreateRoomView.vue';
+import JoinRoomView from '../views/JoinRoomView.vue';
+import WaitingRoomView from '../views/WaitingRoomView.vue';
+import InRoomView from '../views/InRoomView.vue';
 
 const routes = [
   {
@@ -37,9 +35,6 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: AboutView,
     meta: {
       title: 'God of Avalon'
@@ -77,12 +72,11 @@ const routes = [
       title: 'God of Avalon'
     }
   }
-]
+];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
