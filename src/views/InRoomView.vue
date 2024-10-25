@@ -98,9 +98,18 @@
 
       </div>
 
-      <br />
+      <div>
+        你的任务队伍是：
+        <div v-if="selectedUsers.length===0" style="display: inline;">∅</div>
+        <div v-for="(u, index) in selectedUsers" :key="index" style="display: inline;">
+          {{ u }}<span v-if="index < selectedUsers.length - 1">, </span>
+        </div>
+      </div>
+      <div v-if="!selectedUsers.includes(userId)">
+        你的任务队伍中没有自己！
+      </div>
       <button v-on:click="preDoQuestNew" :class="{ disabledButton: selectedUsers.length < 2 }">确定任务队伍人选</button>
-      <button id="confirmBuildChoiceButton" v-on:click="doQuestNew" class="hidden">发起任务队伍投票</button>
+      <button v-on:click="doQuestNew" v-if="preQuestDone">发起任务队伍投票</button>
     </div>
     <div>{{ info }}</div>
 
@@ -127,6 +136,7 @@ export default {
       selectedUsers: [],
       messages: [],
       messagecount: 0,
+      preQuestDone:false,
       showvotecontainer: false,
       showbuildcontainer: false,
       votetitle: 'this is vote title',
@@ -195,7 +205,7 @@ export default {
   },
   methods: {
     changeTeamUser () {
-      document.getElementById('confirmBuildChoiceButton').classList.add('hidden')
+      this.preQuestDone=false;
     },
     toggleGrayscale (event) {
       event.target.classList.toggle('grayscale');
@@ -228,7 +238,7 @@ export default {
       }
     },
     preDoQuestNew () {
-      document.getElementById('confirmBuildChoiceButton').classList.remove('hidden')
+      this.preQuestDone=true;
     },
     doQuestNew () {
       let re = {}
@@ -348,8 +358,8 @@ export default {
           //build
           if (re['roomfurtherstatus'] === 'build') {
             this.showbuildcontainer = false
-            this.selectedUsers = []
-            document.getElementById('confirmBuildChoiceButton').classList.add('hidden')
+            this.selectedUsers = [this.userId]
+            this.preQuestDone=false;
             if (this.votetitle != re['votetitle']) {
               this.votetitle = re['votetitle']
               this.votecontent = re['votecontent']
@@ -391,6 +401,7 @@ export default {
     this.roomId = localStorage.getItem('roomId')
     this.userId = localStorage.getItem('userId')
     this.userPsw = localStorage.getItem('userPsw')
+    this.selectedUsers = [this.userId]
     for (let i = 1; i <= 99999; i++)window.clearInterval(i)
 
     //get users info
