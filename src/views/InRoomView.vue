@@ -106,7 +106,7 @@
         </div>
       </div>
       <div v-if="!selectedUsers.includes(userId)">
-        你的任务队伍中没有自己！
+        你没有在队伍提名中包含自己，你确定吗？
       </div>
       <button v-on:click="preDoQuestNew" :class="{ disabledButton: selectedUsers.length < 2 }">确定任务队伍人选</button>
       <button v-on:click="doQuestNew" v-if="preQuestDone">发起任务队伍投票</button>

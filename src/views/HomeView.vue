@@ -43,6 +43,12 @@
     <br>
     <div class="container">
       <div class="subtitle">更新日志</div>
+      <p><strong>2024年10月24日：</strong></p>
+    <ol>
+        <li>添加了选择的选择的任务队伍成员信息。</li>
+        <li>添加了任务队伍中不包含自己的警示信息。</li>
+    </ol>
+
       <p><strong>2024年10月18日：</strong></p>
     <ol>
         <li>升级至 Django 5.1.2。</li>
