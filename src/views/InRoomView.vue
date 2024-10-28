@@ -45,7 +45,7 @@
       </details>
     </div>
 
-    <div class="container" style="padding:0">
+    <div class="container" style="padding:0" v-if="messages.length > 0">
       <div class="subtitle">历史记录</div>
       <div v-for="message in messages">
         <div :style="getBackgroundStyle(message)">

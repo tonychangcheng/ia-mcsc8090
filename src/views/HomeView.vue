@@ -43,6 +43,11 @@
     <br>
     <div class="container">
       <div class="subtitle">更新日志</div>
+      <p><strong>2024年10月28日：</strong></p>
+    <ol>
+        <li>修改了历史记录出现逻辑：没有记录时不显示。</li>
+    </ol>
+
       <p><strong>2024年10月24日：</strong></p>
     <ol>
         <li>添加了提名的任务队伍成员信息。</li>
