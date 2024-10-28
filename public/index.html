@@ -31,6 +31,8 @@
 </head>
 
 <body>
+
+    <div class="pumpkin"></div>
     <noscript>
         <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
                 Please enable it to continue.</strong>
@@ -39,4 +41,76 @@
     <!-- built files will be auto injected -->
 </body>
 
+
+
 </html>
+
+<style>
+    .pumpkin {
+        position: fixed;
+        background-image: url('https://zijuny.dev/static/pumpking5.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        z-index: -1;
+        transform-origin: center;
+        transition: transform 30s ease, filter 1s ease;
+        filter: brightness(0.05) hue-rotate(0deg) saturate(0) opacity(0.6);
+    }
+
+    .pumpkin.orange {
+        filter: brightness(0.6) hue-rotate(-20deg) saturate(1) opacity(1);
+        transition: transform 30s ease, filter 0s ease;
+    }
+</style>
+
+<script>
+    let firstMove = true;
+    document.addEventListener("DOMContentLoaded", function () {
+        const pumpkin = document.querySelector('.pumpkin');
+
+        function adjustPumpkinSize () {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Ensure both dimensions are set to at least 1.5x the screen size
+            const pumpkinWidth = Math.max(viewportWidth * 1.5, viewportHeight * 1.5);
+            const pumpkinHeight = pumpkinWidth;
+
+            pumpkin.style.width = `${pumpkinWidth}px`;
+            pumpkin.style.height = `${pumpkinHeight}px`;
+        }
+
+        function setNewDestination () {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const pumpkinWidth = Math.max(viewportWidth * 1.5, viewportHeight * 1.5);
+            const pumpkinHeight = pumpkinWidth;
+
+            const centerX = (viewportWidth - pumpkinWidth) / 2;
+            const centerY = (viewportHeight - pumpkinHeight) / 2;
+
+            const movementRangeX = pumpkinWidth * 0.1;
+            const movementRangeY = pumpkinHeight * 0.1;
+
+            const randomOffsetX = (Math.random() - 0.5) * 2 * movementRangeX;
+            const randomOffsetY = (Math.random() - 0.5) * 2 * movementRangeY;
+
+            pumpkin.style.transform = `translate(${centerX + randomOffsetX}px, ${centerY + randomOffsetY}px)`;
+            if (!firstMove) {
+                pumpkin.classList.add('orange');
+                setTimeout(() => pumpkin.classList.remove('orange'), 100);
+            } else {
+                firstMove = false;
+            }
+        }
+
+
+        adjustPumpkinSize();
+        window.addEventListener('resize', adjustPumpkinSize);
+
+        setInterval(setNewDestination, 30000);
+
+        setNewDestination()
+    });
+</script>

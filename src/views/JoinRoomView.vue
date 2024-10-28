@@ -28,7 +28,20 @@
       <br />
       <div class="subtitle">玩家密码</div>
       <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="玩家密码" />
-      <div>*不要使用你的常用密码，密码会被明文传输</div>
+      <ul>
+        <li>
+          不要使用你的常用密码，密码会被明文传输
+        </li>
+        <li>
+          玩家密码不是房间密码，网站不存在房间密码
+        </li>
+        <li>
+          玩家应当设置自己的密码，防止同一房间他人偷窥自己身份
+        </li>
+        <li>
+          建议随机输入，网站会将密码保存在本地，刷新后也不会丢失，并会自动填入
+        </li>
+      </ul>
       <br />
       <button v-on:click="joinRoom">加入房间</button>
       <br />

@@ -19,6 +19,7 @@
 
 <template>
   <div id="app">
+
     <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
     <div class="title">God of Avalon</div>
     <br />
@@ -40,6 +41,9 @@
     <router-view />
   </div>
 </template>
+
+
+
 
 <style lang="scss">
 * {
@@ -73,19 +77,18 @@ body {
   padding: 0;
   background:
     linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)),
-    /* 保持基本背景颜色 */
     linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
     linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
     linear-gradient(335deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%),
     linear-gradient(65deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%);
   background-blend-mode: overlay;
-  /* 使图案与背景颜色融合 */
   background-repeat: repeat;
-  /* 确保图案重复 */
   background-attachment: fixed;
-  /* 背景图案固定 */
   background-size: var(--bg-size) var(--bg-size);
 }
+
+
+
 input {
   background: rgba(255, 255, 255, 0.1);
   font-size: large;

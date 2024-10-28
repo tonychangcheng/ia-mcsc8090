@@ -30,8 +30,7 @@
   -->
       <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      <div class="subtitle">任务队伍成员数量</div>
-      <div>{{ teamBuildingPhase }}</div>
+      
     </div>
 
     <div class="container">
@@ -70,7 +69,10 @@
     </div>
 
     <div class="container hidden" id="teambuilding">
-      <div class="subtitle">组建任务队伍</div>
+      <div class="subtitle">任务队伍成员数量</div>
+      <div style="text-align: center;">{{ teamBuildingPhase }}</div>
+      <hr>
+      <div class="subtitle">组建任务队伍&笔记</div>
 
       <div v-for="user in users" style="display: flex;">
 
@@ -227,13 +229,13 @@ export default {
         // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符是0
         return {
           padding: '0 0 8px 0',
-          background: 'linear-gradient(to left, rgba(0, 160, 224, 0.2), rgba(0, 0, 0, 0))'
+          background: 'linear-gradient(to left, rgba(0, 160, 224, 0.3), rgba(0, 0, 0, 0))'
         };
       } else {
         // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符不是0
         return {
           padding: '0 0 8px 0',
-          background: 'linear-gradient(to left, rgba(224, 118, 0, 0.2), rgba(0, 0, 0, 0))'
+          background: 'linear-gradient(to left, rgba(224, 118, 0, 0.3), rgba(0, 0, 0, 0))'
         };
       }
     },
