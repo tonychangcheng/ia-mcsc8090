@@ -43,6 +43,13 @@
     <br>
     <div class="container">
       <div class="subtitle">更新日志</div>
+
+      <p><strong>2024年10月28日：</strong></p>
+    <ol>
+        <li>修改了任务队伍人数的显示位置。</li>
+        <li>新增了万圣节背景。</li>
+    </ol>
+
       <p><strong>2024年10月27日：</strong></p>
     <ol>
         <li>修改了历史记录出现逻辑：没有记录时不显示。</li>
