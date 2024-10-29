@@ -67,9 +67,9 @@
 <script>
     let firstMove = true;
     document.addEventListener("DOMContentLoaded", function () {
-        const pumpkin = document.querySelector('.pumpkin');
 
         function adjustPumpkinSize () {
+            const pumpkin = document.querySelector('.pumpkin');
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
 
@@ -82,6 +82,7 @@
         }
 
         function setNewDestination () {
+            const pumpkin = document.querySelector('.pumpkin');
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
             const pumpkinWidth = Math.max(viewportWidth * 1.5, viewportHeight * 1.5);
@@ -90,8 +91,8 @@
             const centerX = (viewportWidth - pumpkinWidth) / 2;
             const centerY = (viewportHeight - pumpkinHeight) / 2;
 
-            const movementRangeX = pumpkinWidth * 0.1;
-            const movementRangeY = pumpkinHeight * 0.1;
+            const movementRangeX = pumpkinWidth * 0.3;
+            const movementRangeY = pumpkinHeight * 0.3;
 
             const randomOffsetX = (Math.random() - 0.5) * 2 * movementRangeX;
             const randomOffsetY = (Math.random() - 0.5) * 2 * movementRangeY;
