@@ -22,6 +22,7 @@
     <div class="container">
       <div class="subtitle">房间ID</div>
       <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
+      <button v-on:click="generateNextRoomId">换一个</button>
       <br />
       <button v-on:click="createRoom">创建房间</button>
       <br />
@@ -89,6 +90,60 @@ export default {
     },
     updateRoomInfo () {
       localStorage.setItem(`roomId`, this.validRoomId)
+    },
+    generateNextRoomId() {
+      let currentId = this.roomId
+      let prefix = ''
+      let numberPart = ''
+      if(currentId===''){
+        this.roomId=this.randomRoomId()
+        this.checkRoomId()
+        return;
+      }
+      
+      // Separate characters from trailing numbers
+      for (let i = 0; i < currentId.length; i++) {
+        let char = currentId[i]
+        if (isNaN(parseInt(char))) {
+          prefix += char
+        } else {
+          numberPart = currentId.slice(i)
+          break
+        }
+      }
+
+      // Increment number or append '0' if none
+      if (numberPart) {
+        let newNumber = (parseInt(numberPart) + 1).toString()
+        this.roomId = prefix + newNumber
+      } else {
+        this.roomId = prefix + '0'
+      }
+
+      // Generate random 4-character ID if not valid
+      if (!this.isValidRoomId(this.roomId)) {
+        this.roomId = this.randomRoomId()
+      }
+
+      this.checkRoomId()
+    },
+    isValidRoomId(id) {
+      if (id.length > 6) return false
+      for (let i = 0; i < id.length; i++) {
+        let c = id[i]
+        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+          return false
+        }
+      }
+      return true
+    },
+    randomRoomId() {
+      let chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
+      let result = ''
+      for (let i = 0; i < 5; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length))
+      }
+      return result
     },
   },
   mounted: function () {
