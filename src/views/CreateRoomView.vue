@@ -19,10 +19,12 @@
 
 <template>
   <div>
-    <div class="container">
+    <div class="container centerContainer">
       <div class="subtitle">房间ID</div>
-      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
-      <button v-on:click="generateNextRoomId">下一个</button>
+      <div>
+        <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
+        <button v-on:click="generateNextRoomId">下一个</button>
+      </div>
       <br />
       <button v-on:click="createRoom">创建房间</button>
       <br />
@@ -91,16 +93,16 @@ export default {
     updateRoomInfo () {
       localStorage.setItem(`roomId`, this.validRoomId)
     },
-    generateNextRoomId() {
+    generateNextRoomId () {
       let currentId = this.roomId
       let prefix = ''
       let numberPart = ''
-      if(currentId===''){
-        this.roomId=this.randomRoomId()
+      if (currentId === '') {
+        this.roomId = this.randomRoomId()
         this.checkRoomId()
         return;
       }
-      
+
       // Separate characters from trailing numbers
       for (let i = 0; i < currentId.length; i++) {
         let char = currentId[i]
@@ -127,7 +129,7 @@ export default {
 
       this.checkRoomId()
     },
-    isValidRoomId(id) {
+    isValidRoomId (id) {
       if (id.length > 6) return false
       for (let i = 0; i < id.length; i++) {
         let c = id[i]
@@ -137,7 +139,7 @@ export default {
       }
       return true
     },
-    randomRoomId() {
+    randomRoomId () {
       let chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'
       let result = ''
       for (let i = 0; i < 5; i++) {

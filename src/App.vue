@@ -56,6 +56,12 @@
   margin: 0 auto;
 }
 
+.centerContainer{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 hr {
   border: none;
   border-top: 1px dashed #888;
@@ -98,6 +104,7 @@ input {
   border-radius: 5px;
   margin-top: 10px;
   transition: all 0.3s ease-in-out;
+  max-width: 150px;
   color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

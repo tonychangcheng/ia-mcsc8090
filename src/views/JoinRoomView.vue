@@ -19,10 +19,12 @@
 
 <template>
   <div>
-    <div class="container">
+    <div class="container centerContainer">
       <div class="subtitle">房间ID</div>
-      <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
-      <button v-on:click="generateNextRoomId">下一个</button>
+      <div>
+        <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
+        <button v-on:click="generateNextRoomId">下一个</button>
+      </div>
       <br />
       <div class="subtitle">玩家ID</div>
       <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
