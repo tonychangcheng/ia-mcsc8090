@@ -22,6 +22,7 @@
     <div class="container">
       <div class="subtitle">房间ID</div>
       <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
+      <button v-on:click="generateNextRoomId">下一个</button>
       <br />
       <div class="subtitle">玩家ID</div>
       <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
@@ -167,7 +168,52 @@ export default {
       localStorage.setItem(`roomId`, this.validRoomId)
       localStorage.setItem(`userId`, this.validUserId)
       localStorage.setItem(`userPsw`, this.validUserPsw)
-    }
+    },
+    generateNextRoomId () {
+      let currentId = this.roomId
+      let prefix = ''
+      let numberPart = ''
+      if (currentId === '') {
+        this.info = '自动下一个失败，请手动输入房间ID'
+        return;
+      }
+
+      for (let i = 0; i < currentId.length; i++) {
+        let char = currentId[i]
+        if (isNaN(parseInt(char))) {
+          prefix += char
+        } else {
+          numberPart = currentId.slice(i)
+          break
+        }
+      }
+
+      let nextRoomId = ''
+      if (numberPart) {
+        let newNumber = (parseInt(numberPart) + 1).toString()
+        nextRoomId = prefix + newNumber
+      } else {
+        nextRoomId = prefix + '0'
+      }
+
+      if (!this.isValidRoomId(nextRoomId)) {
+        this.info = '自动下一个失败，请手动输入房间ID'
+        return;
+      }
+      this.roomId = nextRoomId;
+
+      this.checkRoomId()
+    },
+    isValidRoomId (id) {
+      if (id.length > 6) return false
+      for (let i = 0; i < id.length; i++) {
+        let c = id[i]
+        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+          return false
+        }
+      }
+      return true
+    },
   },
   mounted: function () {
     if (!(localStorage.getItem('roomId') === null)) {
