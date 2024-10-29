@@ -30,7 +30,7 @@
   -->
       <div class="subtitle">板子</div>
       <div>{{ template }}</div>
-      
+
     </div>
 
     <div class="container">
@@ -77,7 +77,8 @@
       <div v-for="user in users" style="display: flex;">
 
         <div class="checkbox-wrapper-60" style="margin-right: auto ; ">
-          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers" @change="changeTeamUser" />
+          <input type="checkbox" class="check" :id="user.userId" :value="user.userId" v-model="selectedUsers"
+            @change="changeTeamUser" />
           <label :for="user.userId" style="margin-right: auto; " class="label">
             <svg viewBox="0 0 65 65" height="30" width="30">
               <rect x="7" y="7" width="50" height="50" stroke="white" fill="none" />
@@ -90,8 +91,7 @@
           </label>
         </div>
 
-        <div
-          style=" font-size: 1.5rem;  line-height: 2rem; margin-bottom: 0.5rem;">
+        <div style=" font-size: 1.5rem;  line-height: 2rem; margin-bottom: 0.5rem;">
           <div v-for="emoji in emojis" class="grayscale" style="display: inline; cursor: default;"
             @click="toggleGrayscale($event)">{{ emoji }}</div>
         </div>
@@ -102,7 +102,7 @@
 
       <div>
         你的任务队伍是：
-        <div v-if="selectedUsers.length===0" style="display: inline;">∅</div>
+        <div v-if="selectedUsers.length === 0" style="display: inline;">∅</div>
         <div v-for="(u, index) in selectedUsers" :key="index" style="display: inline;">
           {{ u }}<span v-if="index < selectedUsers.length - 1">, </span>
         </div>
@@ -138,7 +138,7 @@ export default {
       selectedUsers: [],
       messages: [],
       messagecount: 0,
-      preQuestDone:false,
+      preQuestDone: false,
       showvotecontainer: false,
       showbuildcontainer: false,
       votetitle: 'this is vote title',
@@ -147,6 +147,7 @@ export default {
       userChoiceEmoji: '✔️',
       token: '',
       info: '',
+      intervalId: null,
     }
   },
   computed: {
@@ -207,7 +208,7 @@ export default {
   },
   methods: {
     changeTeamUser () {
-      this.preQuestDone=false;
+      this.preQuestDone = false;
     },
     toggleGrayscale (event) {
       event.target.classList.toggle('grayscale');
@@ -240,7 +241,7 @@ export default {
       }
     },
     preDoQuestNew () {
-      this.preQuestDone=true;
+      this.preQuestDone = true;
     },
     doQuestNew () {
       let re = {}
@@ -361,7 +362,7 @@ export default {
           if (re['roomfurtherstatus'] === 'build') {
             this.showbuildcontainer = false
             this.selectedUsers = [this.userId]
-            this.preQuestDone=false;
+            this.preQuestDone = false;
             if (this.votetitle != re['votetitle']) {
               this.votetitle = re['votetitle']
               this.votecontent = re['votecontent']
@@ -404,7 +405,6 @@ export default {
     this.userId = localStorage.getItem('userId')
     this.userPsw = localStorage.getItem('userPsw')
     this.selectedUsers = [this.userId]
-    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
 
     //get users info
     axios({
@@ -463,7 +463,7 @@ export default {
     this.updatemessages()
     this.updateroominfoAndRender()
 
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       //new message pull
       this.updatemessages()
 
@@ -474,7 +474,14 @@ export default {
 
     this.updatemessages()
     this.updateroominfoAndRender()
-  }
+  },
+  beforeUnmount () {
+    // console.log(this.intervalId)
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  },
+
 }
 </script>
 <style>

@@ -170,7 +170,6 @@ export default {
     }
   },
   mounted: function () {
-    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
     if (!(localStorage.getItem('roomId') === null)) {
       let tempRoomId = localStorage.getItem('roomId');
       this.roomId = tempRoomId;

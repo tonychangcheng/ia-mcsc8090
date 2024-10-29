@@ -54,7 +54,7 @@
         pointer-events: none;
         z-index: -1;
         transform-origin: center;
-        transition: transform 30s ease, filter 1s ease;
+        transition: transform 60s ease, filter 1s ease;
         filter: brightness(0.05) hue-rotate(0deg) saturate(0) opacity(0.6);
     }
 
@@ -91,8 +91,8 @@
             const centerX = (viewportWidth - pumpkinWidth) / 2;
             const centerY = (viewportHeight - pumpkinHeight) / 2;
 
-            const movementRangeX = pumpkinWidth * 0.3;
-            const movementRangeY = pumpkinHeight * 0.3;
+            const movementRangeX = pumpkinWidth * 0.2;
+            const movementRangeY = pumpkinHeight * 0.2;
 
             const randomOffsetX = (Math.random() - 0.5) * 2 * movementRangeX;
             const randomOffsetY = (Math.random() - 0.5) * 2 * movementRangeY;

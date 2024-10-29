@@ -44,6 +44,12 @@
     <div class="container">
       <div class="subtitle">更新日志</div>
 
+
+      <p><strong>2024年10月29日：</strong></p>
+    <ol>
+        <li>修复了万圣节背景计时器被清除的bug。</li>
+    </ol>
+
       <p><strong>2024年10月28日：</strong></p>
     <ol>
         <li>修改了任务队伍人数的显示位置。</li>
@@ -342,7 +348,6 @@ export default {
     },
   },
   mounted: function () {
-    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
     //get token
     this.gettoken()
   },

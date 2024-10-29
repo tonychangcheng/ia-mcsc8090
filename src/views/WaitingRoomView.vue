@@ -50,7 +50,8 @@ export default {
       userPsw: '',
       users: [],
       userCount: 0,
-      info: ''
+      info: '',
+      intervalId: null,
     }
   },
   computed: {
@@ -139,12 +140,17 @@ export default {
     this.roomId = localStorage.getItem('roomId')
     this.userId = localStorage.getItem('userId')
     this.userPsw = localStorage.getItem('userPsw')
-    for (let i = 1; i <= 99999; i++)window.clearInterval(i)
     this.updateRoomInfo()
-    setInterval(() => {//update room info
+    this.intervalId = setInterval(() => {//update room info
       this.updateRoomInfo()
     }, 2000)
     this.updateRoomInfo()
-  }
+  },
+  beforeUnmount () {
+    // console.log(this.intervalId)
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  },
 }
 </script>
