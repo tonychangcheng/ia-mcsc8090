@@ -22,7 +22,7 @@
     <div class="container">
       <div class="subtitle">房间ID</div>
       <input v-on:input="checkRoomId" v-model="roomId" type="text" placeholder="房间ID" />
-      <button v-on:click="generateNextRoomId">换一个</button>
+      <button v-on:click="generateNextRoomId">下一个</button>
       <br />
       <button v-on:click="createRoom">创建房间</button>
       <br />
