@@ -11,7 +11,6 @@
         "body-parser": "^1.20.3",
         "core-js": "^3.37.1",
         "express": "^4.21.1",
-        "postcss": "^8.4.47",
         "send": "^1.1.0",
         "serve-static": "^1.16.2",
         "vue": "^3.5.12",
@@ -24,8 +23,9 @@
         "@vue/cli-plugin-babel": "^5.0.8",
         "@vue/cli-plugin-router": "~5.0.8",
         "@vue/cli-plugin-vuex": "~5.0.8",
-        "@vue/cli-service": "~5.0.8",
+        "@vue/cli-service": "^5.0.8",
         "@vue/compiler-sfc": "^3.5.12",
+        "postcss": "^8.4.47",
         "sass": "^1.80.2",
         "sass-loader": "^16.0.2"
     }
