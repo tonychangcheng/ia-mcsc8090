@@ -23,7 +23,7 @@
     <button v-on:click="trypost">trypost button</button>
     -->
     <div class="container">
-      <b style="color: yellow">重要：域名迁移至 goa.zijuny.dev</b>
+      <b style="color: yellow" class="centerContainer">重要：域名迁移至 goa.zijuny.dev</b>
       <div class="subtitle">--help</div>
         要使用此网站玩《阿瓦隆：抵抗组织》，首先需要创建一个房间。
         <br><br>
