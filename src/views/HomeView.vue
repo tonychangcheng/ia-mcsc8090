@@ -44,11 +44,15 @@
     <br>
     <div class="container">
       <div class="subtitle">更新日志</div>
-
+      
+      <p><strong>2024年11月4日：</strong></p>
+    <ol>
+        <li>迁移后端至新服务器。</li>
+    </ol>
 
       <p><strong>2024年11月1日：</strong></p>
     <ol>
-        <li>迁移域名至goa.zijuny.dev。</li>
+        <li>迁移域名至goa.zijuny.dev，迁移前端至新服务器。</li>
     </ol>
 
       <p><strong>2024年10月29日：</strong></p>
