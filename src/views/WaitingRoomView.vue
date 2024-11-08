@@ -27,7 +27,7 @@
       <div class="subtitle">玩家数量</div>
       <div>{{ userCount }}</div>
       <div class="subtitle">房间内的玩家</div>
-      <div v-for="user in users">{{ user.userId }}</div>
+      <div v-for="user in users" style="display: inline-block; margin-right: 10px;">{{ user.userId }}</div>
     </div>
     <div class="container">
       <div class="subtitle">板子</div>
