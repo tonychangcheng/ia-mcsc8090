@@ -39,9 +39,36 @@
 
     <br />
     <router-view />
+    <div class="visitor-count">
+      Visitors: {{ visitorCount }}
+    </div>
   </div>
 </template>
 
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      visitorCount: 0,
+    };
+  },
+  mounted() {
+    this.fetchVisitorCount();
+  },
+  methods: {
+    async fetchVisitorCount() {
+      try {
+        const response = await axios.get("https://zjyang.dev/visitor_count/goa/");
+        this.visitorCount = response.data || 'N/A';
+      } catch (error) {
+        console.error("Error fetching visitor count:", error);
+      }
+    },
+  },
+};
+</script>
 
 
 
