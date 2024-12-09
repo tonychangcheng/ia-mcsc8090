@@ -30,7 +30,10 @@
       <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
       <br />
       <div class="subtitle">玩家密码</div>
-      <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="玩家密码" />
+      <div>
+        <input v-on:input="checkUserPsw" v-model="userPsw" type="text" placeholder="玩家密码" />
+        <button v-on:click="generateRandomPsw">随机</button>
+      </div>
       <ul>
         <li>
           不要使用你的常用密码，密码会被明文传输
@@ -205,6 +208,11 @@ export default {
       this.roomId = nextRoomId;
 
       this.checkRoomId()
+    },
+    generateRandomPsw () {
+      const randomNumber = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+      this.userPsw = `${randomNumber}`;
+      this.checkUserPsw();
     },
     isValidRoomId (id) {
       if (id.length > 6) return false

@@ -45,6 +45,11 @@
     <div class="container">
       <div class="subtitle">更新日志</div>
 
+      <p><strong>2024年12月8日：</strong></p>
+    <ol>
+        <li>增加一键随机密码。</li>
+    </ol>
+
       <p><strong>2024年12月7日：</strong></p>
     <ol>
         <li>增加访客计数。</li>
