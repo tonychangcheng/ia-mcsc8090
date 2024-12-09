@@ -27,7 +27,8 @@
       </div>
       <br />
       <div class="subtitle">玩家ID</div>
-      <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
+        <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
+        <button v-on:click="generateRandomId">随机，无意冒犯，纯属搞笑</button>
       <br />
       <div class="subtitle">玩家密码</div>
       <div>
@@ -214,6 +215,11 @@ export default {
       this.userPsw = `${randomNumber}`;
       this.checkUserPsw();
     },
+    generateRandomId () {
+      this.validUserId = this.getRandomUserId();
+      this.userId = this.validUserId;
+      this.updateRoomInfo();
+    },
     isValidRoomId (id) {
       if (id.length > 6) return false
       for (let i = 0; i < id.length; i++) {
@@ -224,6 +230,34 @@ export default {
       }
       return true
     },
+    getRandomUserId () {
+      const defaultUsernames = [
+        "Peter", "Stewie", "Quag", "Lois", "Brian", "Meg", "Chris",
+        "Joe", "Clev", "Herb", "Adam", "Bonnie", "Mort", "Neil", "Glenn",
+        "Nap", "Hitler", "Stalin", "Church", "Patton", "Rommel",
+        "Monty", "Eisen", "Lee", "Grant", "Hannib", "Scipio",
+        "Caesar", "Nelson", "Nimitz", "Wash", "Attila", "Tito",
+        "FDR", "Truman", "Mussol", "Franco", "Castro", "Bismar",
+        "Wilhel", "Lincoln", "Jeff", "Jackson", "NapIII", "DeGaul",
+        "Cromwe", "Philip", "George", "Andrew", "Clinto", "Putin",
+        "Trump", "Kim", "Boris", "Zelens", "Arafat", "Netany",
+        "Erdoga", "Bolson", "Dutert", "Orban", "LePen", "Modi",
+        "Saddam", "Gaddaf", "BinLad", "Assad", "Che", "Hoover",
+        "Nixon", "Reagan", "Bush", "Macron", "Merkel", "Thatchr",
+        "Blair", "Biden", "Sandrs", "Obama", "Harris", "Pelosi",
+        "Marjor", "Gaetz", "BoJo", "Epstei", "Weiner", "Ritten",
+        "Ye", "Musk", "Zucker", "Bezos", "Snowde", "Assang", "Soros",
+        "Alexan", "Petrov", "Zhuko", "Konev", "Timosh", "DeGaul",
+        "NapIII", "Monty", "Rommel", "Bradly", "MacArt", "Yama",
+        "Welles", "Truman", "FDR", "Reagan", "Nixon", "Clinto",
+        "Eisen", "Patton", "Sherma", "Jackson", "Nelson", "Welles",
+        "Blair", "Biden", "Thatchr", "Church", "BoJo", "Macron",
+        "DeGaul", "Bonapa"
+      ];
+
+      const randomIndex = Math.floor(Math.random() * defaultUsernames.length);
+      return defaultUsernames[randomIndex];
+    }
   },
   mounted: function () {
     if (!(localStorage.getItem('roomId') === null)) {
@@ -233,13 +267,24 @@ export default {
     }
     if (!(localStorage.getItem('userId') === null || localStorage.getItem('userPsw') === null)) {
       let tempUserId = localStorage.getItem('userId'), tempUserPsw = localStorage.getItem('userPsw');
+      if (tempUserId === '') {
+        tempUserId = this.getRandomUserId();
+      }
       this.userId = tempUserId;
       this.validUserId = tempUserId;
       this.userPsw = tempUserPsw;
       this.validUserPsw = tempUserPsw;
     } else {
-      this.updateRoomInfo();
+      if (localStorage.getItem('userId') === null) {
+
+        this.userId = this.getRandomUserId();
+        this.validUserId = this.userId;
+      }
+      if (localStorage.getItem('userPsw') === null) {
+        this.generateRandomPsw();
+      }
     }
+    this.updateRoomInfo();
   },
 }
 </script>

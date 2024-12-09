@@ -47,7 +47,7 @@
 
       <p><strong>2024年12月8日：</strong></p>
     <ol>
-        <li>增加一键随机密码。</li>
+        <li>增加一键随机密码和玩家id。</li>
     </ol>
 
       <p><strong>2024年12月7日：</strong></p>
