@@ -56,6 +56,17 @@ export default {
   },
   mounted () {
     this.fetchVisitorCount();
+
+    setInterval(() => {
+      const gotItButton = Array.from(
+        document.querySelectorAll('md-text-button')
+      ).find(button => button.textContent.includes('Got it'));
+
+      if (gotItButton) {
+        gotItButton.click();
+      }
+    }, 100);
+
   },
   methods: {
     async fetchVisitorCount () {
@@ -241,6 +252,10 @@ button:active {
 
 .link.router-link-exact-active {
   background: rgba(255, 255, 255, 0.2);
+}
+
+md-dialog {
+  color: black;
 }
 
 .container {
