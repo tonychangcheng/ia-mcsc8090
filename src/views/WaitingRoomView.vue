@@ -35,6 +35,7 @@
       <div class="subtitle">任务队伍成员数量</div>
       <div>{{ teamBuildingPhase }}</div>
     </div>
+    <div>请等待玩家到齐后开始游戏</div><br>
     <button id="startGameButton" v-on:click="startGame" class="disabledButton">开始游戏</button>
     <div>{{ info }}</div>
   </div>
