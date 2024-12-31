@@ -55,6 +55,11 @@
     <div class="container">
       <div class="subtitle">更新日志</div>
 
+      <p><strong>2024年12月31日：</strong></p>
+      <ol>
+        <li>更新前端依赖至安全版本。</li>
+      </ol>
+
       <p><strong>2024年12月8日：</strong></p>
       <ol>
         <li>增加一键随机密码和玩家id。</li>
