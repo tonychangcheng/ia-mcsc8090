@@ -217,27 +217,28 @@ export default {
       this.summaryText = '你的角色（' + (this.$refs.details.open ? '点击以隐藏' : '点击以展示') + '）'
     },
     getBackgroundStyle (message) {
-      const { messagetitle, message2users } = message;
+      const { messagetitle, message1users, message2users } = message;
       const containsTeam = messagetitle.includes('Team') || messagetitle.includes('队伍');
-      const startsWithZero = message2users[0] === '0';
+
 
       if (containsTeam) {
         // 如果包含“Team”或“队伍”，则不需要任何背景
         return {
           padding: '0 0 8px 0'
         };
-      } else if (startsWithZero) {
-        // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符是0
-        return {
-          padding: '0 0 8px 0',
-          background: 'linear-gradient(to left, rgba(0, 160, 224, 0.3), rgba(0, 0, 0, 0))'
-        };
       } else {
-        // 如果不包含“Team”且不包含“队伍”，并且 message2users 的第一个字符不是0
+        const successCnt = parseInt(message1users.split(' ')[0], 10);
+        const failCnt = parseInt(message2users.split(' ')[0], 10);
+        const leftColor = 'rgba(0,160,224,0.3)';
+        const rightColor = 'rgba(224,118,0,0.3)';
+        const middleColor = 'rgba(0,0,0,0)';
+        const middlePositionToLeft = successCnt / (successCnt + failCnt);
+
         return {
           padding: '0 0 8px 0',
-          background: 'linear-gradient(to left, rgba(224, 118, 0, 0.3), rgba(0, 0, 0, 0))'
+          background: `linear-gradient(to right, ${leftColor} 0%, ${middleColor} ${middlePositionToLeft * 100}%, ${middleColor} ${middlePositionToLeft * 100}%, ${rightColor} 100%)`,
         };
+
       }
     },
     preDoQuestNew () {

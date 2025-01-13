@@ -28,7 +28,7 @@
       <br />
       <div class="subtitle">玩家ID</div>
         <input v-on:input="checkUserId" v-model="userId" type="text" placeholder="玩家ID" />
-        <button v-on:click="generateRandomId">随机，无意冒犯，纯属搞笑</button>
+        <!-- <button v-on:click="generateRandomId">随机，无意冒犯，纯属搞笑</button> -->
       <br />
       <div class="subtitle">玩家密码</div>
       <div>

@@ -55,6 +55,11 @@
     <div class="container">
       <div class="subtitle">更新日志</div>
 
+      <p><strong>2025年1月13日：</strong></p>
+      <ol>
+        <li>更新任务结果显示界面。</li>
+      </ol>
+
       <p><strong>2024年12月31日：</strong></p>
       <ol>
         <li>更新前端依赖至安全版本。</li>
