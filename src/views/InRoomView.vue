@@ -229,8 +229,8 @@ export default {
       } else {
         const successCnt = parseInt(message1users.split(' ')[0], 10);
         const failCnt = parseInt(message2users.split(' ')[0], 10);
-        const leftColor = 'rgba(0,160,224,0.3)';
-        const rightColor = 'rgba(224,118,0,0.3)';
+        const leftColor = 'rgba(0,160,224,0.4)';
+        const rightColor = 'rgba(224,118,0,0.5)';
         const middleColor = 'rgba(0,0,0,0)';
         const middlePositionToLeft = successCnt / (successCnt + failCnt);
 
