@@ -21,7 +21,7 @@
   <div id="app">
 
     <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
-    <div class="title">God of Avalon</div>
+    <div class="title">单身时代无间道</div>
     <br />
     <div class="links">
       <router-link class="link" style="border-left: 1px solid rgba(255, 255, 255, 1); " to="/">主页</router-link>
@@ -119,12 +119,7 @@ body {
 
   margin: 0;
   padding: 0;
-  background:
-    linear-gradient(rgb(21, 30, 36), rgb(21, 30, 36)),
-    linear-gradient(155deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
-    linear-gradient(245deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%) var(--bg-offset) 0,
-    linear-gradient(335deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%),
-    linear-gradient(65deg, rgba(255, 255, 255, 0.02) 25%, transparent 10%);
+  background-color: black;
   background-blend-mode: overlay;
   background-repeat: repeat;
   background-attachment: fixed;
