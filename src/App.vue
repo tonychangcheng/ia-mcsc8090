@@ -24,7 +24,7 @@
     <div class="title">单身时代无间道</div>
     <br />
     <div class="links">
-      <router-link class="link" style="border-left: 1px solid rgba(255, 255, 255, 1); " to="/">主页</router-link>
+      <!-- <router-link class="link" style="border-left: 1px solid rgba(255, 255, 255, 1); " to="/">主页</router-link> -->
       <router-link class="link"
         style="border-left: 1px solid rgba(255, 255, 255, 1); border-right: 1px solid rgba(255, 255, 255, 1);"
         to="/createroom">创建房间</router-link>

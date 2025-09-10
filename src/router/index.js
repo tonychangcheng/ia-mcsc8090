@@ -26,11 +26,7 @@ import InRoomView from '../views/InRoomView.vue';
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-    meta: {
-      title: 'God of Avalon'
-    }
+    redirect: '/joinroom'
   },
   {
     path: '/about',
