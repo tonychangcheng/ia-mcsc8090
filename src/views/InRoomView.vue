@@ -63,7 +63,7 @@
       <div class="subtitle">{{ votetitle }}</div>
       <div>{{ votecontent }}</div>
       <button v-on:click="chooseYes">✔️</button>
-      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">❌ {{ votetitle.indexOf('队伍提名') ? '' : '有内鬼终止交易' }}</button>
+      <button id="nobutton" class="disabledButton" v-on:click="chooseNo">❌ {{ votetitle.includes('队伍提名') ? '' : '有内鬼终止交易' }}</button>
       <div id="confirmchoiceinfo" class="hidden">你选择了 "{{ userChoiceEmoji }}"</div>
       <button id="confirmchoicebutton" class="hidden" v-on:click="confirmChoice">确认</button>
     </div>
