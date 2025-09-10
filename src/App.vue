@@ -19,9 +19,11 @@
 
 <template>
   <div id="app">
-
-    <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
-    <div class="title">单身时代无间道</div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
+      <div class="title" style="margin: 0 10px 0 0;">无间道</div>
+      <img src="icon1a.png" style="height: 40px;" />
+    </div>
     <br />
     <div class="links">
       <!-- <router-link class="link" style="border-left: 1px solid rgba(255, 255, 255, 1); " to="/">主页</router-link> -->
@@ -42,7 +44,6 @@
     <div class="visitor-count">
       Visitors: {{ visitorCount }}
     </div>
-    <img src="icon1a.png"></img>
   </div>
 </template>
 
