@@ -42,6 +42,7 @@
     <div class="visitor-count">
       Visitors: {{ visitorCount }}
     </div>
+    <img src="icon1a.png"></img>
   </div>
 </template>
 
