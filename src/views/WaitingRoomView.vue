@@ -65,12 +65,12 @@ export default {
         '',
         '',
         '',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫甘娜Mary姐刘嘉玲😈、刺客韩琛曾志伟🔪、1警员🙌',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫甘娜Mary姐刘嘉玲😈、刺客韩琛曾志伟🔪、2警员🙌',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫甘娜Mary姐刘嘉玲😈、刺客韩琛曾志伟🔪、奥伯伦林国平林家栋👻、2警员🙌',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫德雷德刘建明刘德华👹、莫甘娜Mary姐刘嘉玲😈、爪牙傻强杜汶泽💀、3警员🙌',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫德雷德刘建明刘德华👹、莫甘娜Mary姐刘嘉玲😈、刺客韩琛曾志伟🔪、4警员🙌',
-        '梅琳陈永仁梁朝伟🧙‍♂️、派西黄志诚黄秋生🛡️、莫德雷德刘建明刘德华👹、莫甘娜Mary姐刘嘉玲😈、刺客韩琛曾志伟🔪、奥伯伦林国平林家栋👻、4警员🙌'
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、1警员(忠臣)🙌',
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、2警员(忠臣)🙌',
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、2警员(忠臣)🙌',
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、傻强(爪牙)💀、3警员(忠臣)🙌',
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、4警员(忠臣)🙌',
+        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、4警员(忠臣)🙌'
       ];
       // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
