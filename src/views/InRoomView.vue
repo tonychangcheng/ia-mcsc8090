@@ -39,6 +39,7 @@
           <div class="subtitle">{{ summaryText }}</div>
         </summary>
         <div>{{ chineseRoleName }}</div>
+        <img :src="`${userRole}.png`" style="height: 60px; margin: 10px 0;" />
         <div class="subtitle">{{ roleUserSee }}</div>
         <div>{{ userSeeString }}</div>
       </details>
