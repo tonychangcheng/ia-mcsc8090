@@ -41,9 +41,9 @@
 
     <br />
     <router-view />
-    <div class="visitor-count">
+    <!-- <div class="visitor-count">
       Visitors: {{ visitorCount }}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -57,7 +57,7 @@ export default {
     };
   },
   mounted () {
-    this.fetchVisitorCount();
+    // this.fetchVisitorCount();
 
     setInterval(() => {
       const gotItButton = Array.from(
