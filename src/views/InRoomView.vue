@@ -434,12 +434,12 @@ export default {
         let roleUserSees = {
           'Merlin': '你知道的坏人',
           'Percival': '一个是梅琳陈永仁梁朝伟🧙‍♂️，另一个是莫甘娜Mary姐刘嘉玲😈',
-          'Mordred': '你的邪恶队友',
-          'Morgana': '你的邪恶队友',
-          'Assassin': '你的邪恶队友',
+          'Mordred': '你的黑帮队友',
+          'Morgana': '你的黑帮队友',
+          'Assassin': '你的黑帮队友',
           'Loyal Servant of Arther': '', // 对于警员🙌，没有额外信息
-          'Oberon': '你是奥伯伦林国平林家栋👻，你不知道你的邪恶队友是谁', // 对于奥伯伦林国平林家栋👻，没有额外信息
-          'Minion of Mordred': '你的邪恶队友'
+          'Oberon': '你是奥伯伦林国平林家栋👻，你不知道你的黑帮队友是谁', // 对于奥伯伦林国平林家栋👻，没有额外信息
+          'Minion of Mordred': '你的黑帮队友'
         }
         this.roleUserSee = roleUserSees[this.userRole]
 
