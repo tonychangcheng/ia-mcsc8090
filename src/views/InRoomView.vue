@@ -39,7 +39,7 @@
           <div class="subtitle">{{ summaryText }}</div>
         </summary>
         <div>{{ chineseRoleName }}</div>
-        <img :src="`${userRole}.png`" style="height: 60px; margin: 10px 0;" />
+        <img :src="`${userRole}.png`" style="height: 400px; margin: 10px 0;" />
         <div class="subtitle">{{ roleUserSee }}</div>
         <div>{{ userSeeString }}</div>
       </details>
@@ -156,22 +156,22 @@ export default {
       return this.usersUserSee.map(user => user.userId).join(', ');
     },
     template: function () {
-      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount < 4) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let templates = [
         '',
         '',
         '',
         '',
-        '',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、1警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、2警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、2警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、傻强(爪牙)💀、3警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、4警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、4警员(忠臣)🙌'
+        '🟦教士、🟦1忠臣、😈摩根勒菲、🔪盲眼杀手',
+        '🟦教士、🟦1忠臣、😈摩根勒菲、🔪盲眼杀手、🟧1爪牙',
+        '🟦教士、🟦捣乱者、🟦公爵、😈摩根勒菲、🔪盲眼杀手、🟧1爪牙',
+        '🟦教士、🟦学徒、🟦公爵、😈摩根勒菲、🔪盲眼杀手、🟧2爪牙',
+        '🟦教士、🟦捣乱者、🟦公爵、🟦1忠臣、😈摩根勒菲、🔪盲眼杀手、🟧2爪牙',
+        '🟦教士、🟦学徒、🟦大公、🟦1忠臣、😈摩根勒菲、🔪盲眼杀手、🟧3爪牙',
+        '🟦教士、🟦捣乱者、🟦公爵、🟦大公、🟦1忠臣、😈摩根勒菲、🔪盲眼杀手、🟧3爪牙'
       ];
-      // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
+      // let templates = ['', '', '', '', '', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 1 Loyal Servant of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 2 Loyal Servants of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, Troublemaker, 2 Loyal Servants of Arther', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
       return templates[this.userCount]
     },
@@ -179,8 +179,9 @@ export default {
       if (this.userCount < 5) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let teamBuildingPhases = [
-        '', '', '', '', '',
-        '2 3 2 3 3',
+        '', '', '', '', 
+        '2 3 2 3',
+        '2 3 2 4 3',
         '2 3 4 3 4',
         '2 3 3 4（保护轮）4',
         '3 4 4 5（保护轮）5',
@@ -192,14 +193,15 @@ export default {
     },
     chineseRoleName: function () {
       let roleName = {
-        'Merlin': '陈永仁(梅琳)🧙‍♂️',
-        'Percival': '黄志诚(派西)🛡️',
-        'Mordred': '刘建明(莫德雷德)👹',
-        'Morgana': 'Mary姐(莫甘娜)😈',
-        'Assassin': '韩琛(刺客)🔪',
-        'Loyal Servant of Arther': '警员(忠臣)🙌',
-        'Oberon': '大B(奥伯伦)👻',
-        'Minion of Mordred': '傻强(爪牙)💀'
+        'Loyal Servant of Arther': '忠臣',
+        'Cleric': '教士',
+        'Youth': '学徒',
+        'Troublemaker': '捣乱者',
+        'Duke': '公爵',
+        'Archduke': '大公',
+        'Minion of Mordred': '爪牙',
+        'Morgan le Fey': '摩根勒菲',
+        'Blind Hunter': '盲眼杀手'
       }
       return roleName[this.userRole]
     },
@@ -382,7 +384,7 @@ export default {
           }
           //deal with no button
           let ul = this.userRole
-          if ((ul === 'Morgana' || ul === 'Assassin' || ul === 'Mordred' || ul === 'Oberon' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
+          if ((ul === 'Morgan le Fey' || ul === 'Blind Hunter' || ul === 'Archduke' || ul === 'Troublemaker' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
             document.getElementById('nobutton').classList.remove('disabledButton')
           } else {
             document.getElementById('nobutton').classList.add('disabledButton')
@@ -433,13 +435,13 @@ export default {
       .then((response) => {
         this.userRole = response.data
         let roleUserSees = {
-          'Merlin': '你知道的坏人',
-          'Percival': '一个是陈永仁(梅琳)🧙‍♂️，另一个是Mary姐(莫甘娜)😈',
-          'Mordred': '你的黑帮队友',
-          'Morgana': '你的黑帮队友',
-          'Assassin': '你的黑帮队友',
+          'Cleric': '你知道的坏人',
+          'Duke': '一个是陈永仁(梅琳)🧙‍♂️，另一个是Mary姐(莫甘娜)😈',
+          'Archduke': '你的黑帮队友',
+          'Morgan le Fey': '你的黑帮队友',
+          'Blind Hunter': '你的黑帮队友',
           'Loyal Servant of Arther': '', // 对于警员(忠臣)🙌，没有额外信息
-          'Oberon': '你是大B(奥伯伦)👻，你不知道你的黑帮队友是谁', // 对于大B(奥伯伦)👻，没有额外信息
+          'Troublemaker': '你是大B(奥伯伦)👻，你不知道你的黑帮队友是谁', // 对于大B(奥伯伦)👻，没有额外信息
           'Minion of Mordred': '你的黑帮队友'
         }
         this.roleUserSee = roleUserSees[this.userRole]

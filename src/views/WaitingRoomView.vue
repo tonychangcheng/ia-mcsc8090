@@ -64,15 +64,15 @@ export default {
         '',
         '',
         '',
-        '',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、1警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、2警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、2警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、傻强(爪牙)💀、3警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、4警员(忠臣)🙌',
-        '陈永仁(梅琳)🧙‍♂️、黄志诚(派西)🛡️、刘建明(莫德雷德)👹、Mary姐(莫甘娜)😈、韩琛(刺客)🔪、大B(奥伯伦)👻、4警员(忠臣)🙌'
+        '教士、1忠臣、摩根勒菲、盲眼杀手',
+        '教士、1忠臣、摩根勒菲、盲眼杀手、1爪牙',
+        '教士、捣乱者、公爵、摩根勒菲、盲眼杀手、1爪牙',
+        '教士、学徒、公爵、摩根勒菲、盲眼杀手、2爪牙',
+        '教士、捣乱者、公爵、1忠臣、摩根勒菲、盲眼杀手、2爪牙',
+        '教士、学徒、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙',
+        '教士、捣乱者、公爵、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙'
       ];
-      // let templates = ['', '', '', '', '', 'Merlin, Percival, Morgana, Assassin, 1 Loyal Servant of Arther', 'Merlin, Percival, Morgana, Assassin, 2 Loyal Servants of Arther', 'Merlin, Percival, Morgana, Assassin, Oberon, 2 Loyal Servants of Arther', 'Merlin, Percival, Mordred, Morgana, Assassin, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Merlin, Percival, Mordred, Morgana, Assassin, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
+      // let templates = ['', '', '', '', '', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 1 Loyal Servant of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 2 Loyal Servants of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, Troublemaker, 2 Loyal Servants of Arther', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
       return templates[this.userCount]
     },
@@ -80,8 +80,9 @@ export default {
       if (this.userCount < 5) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let teamBuildingPhases = [
-        '', '', '', '', '',
-        '2 3 2 3 3',
+        '', '', '', '', 
+        '2 3 2 3',
+        '2 3 2 4 3',
         '2 3 4 3 4',
         '2 3 3 4（保护轮）4',
         '3 4 4 5（保护轮）5',

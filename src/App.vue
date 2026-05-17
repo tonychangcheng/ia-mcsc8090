@@ -21,7 +21,7 @@
   <div id="app">
     <div style="display: flex; align-items: center; justify-content: center;">
       <h1 style="display: none;">God of Avalon | Play Avalon Online! | 线上阿瓦隆 | 阿瓦隆发牌助手</h1>
-      <div class="title" style="margin: 0 10px 0 0;">无间道</div>
+      <div class="title" style="margin: 0 10px 0 0;">阿瓦隆2 亚瑟传奇 导演版</div>
       <img src="icon1a.png" style="height: 40px;" />
     </div>
     <br />
@@ -178,7 +178,7 @@ button:active {
 }
 
 .title {
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bolder;
   margin: 1rem auto 0rem auto;
   text-align: center;
