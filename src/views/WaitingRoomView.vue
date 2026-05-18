@@ -57,37 +57,37 @@ export default {
   },
   computed: {
     template: function () {
-      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount < 4) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let templates = [
         '',
         '',
         '',
         '',
-        '教士、1忠臣、摩根勒菲、盲眼杀手',
-        '教士、1忠臣、摩根勒菲、盲眼杀手、1爪牙',
-        '教士、捣乱者、公爵、摩根勒菲、盲眼杀手、1爪牙',
-        '教士、侍从、公爵、摩根勒菲、盲眼杀手、2爪牙',
-        '教士、捣乱者、公爵、1忠臣、摩根勒菲、盲眼杀手、2爪牙',
-        '教士、侍从、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙',
-        '教士、捣乱者、公爵、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙'
+        '🟦教士：知道第一位領袖的陣營、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家',
+        '🟦教士：知道第一位領袖的陣營、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧1爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧1爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧2爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧2爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦大公：「最終任務」中，邪惡方揭露身份後，可以改變一個玩家一隻手的指向、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧3爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、🟦大公：「最終任務」中，邪惡方揭露身份後，可以改變一個玩家一隻手的指向、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧3爪牙'
       ];
       // let templates = ['', '', '', '', '', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 1 Loyal Servant of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 2 Loyal Servants of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, Troublemaker, 2 Loyal Servants of Arther', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
       //                                    5                                                                 6                                                                  7                                                                            8                                                                                                                       9                                                                                                     10 
       return templates[this.userCount]
     },
     teamBuildingPhase: function () {
-      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount < 4) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let teamBuildingPhases = [
         '', '', '', '', 
-        '2 3 2 3',
-        '2 3 2 4 3',
-        '2 3 4 3 4',
-        '2 3 3 4（保护轮）4',
-        '3 4 4 5（保护轮）5',
-        '3 4 4 5（保护轮）5',
-        '3 4 4 5（保护轮）5'
+        '2  3  2  3',
+        '3  2  3  4  3',
+        '3  2  3  4  🧙‍♂️3',
+        '3  2  3  🧙‍♂️4 🧙‍♂️3',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4'
       ];
       // let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
@@ -125,7 +125,7 @@ export default {
           //console.log(this.users)
 
           let startRoomButton = document.getElementById('startGameButton')
-          if (this.userCount < 5 || this.userCount > 10) {
+          if (this.userCount < 4 || this.userCount > 10) {
             startRoomButton.classList.add('disabledButton')
           } else {
             startRoomButton.classList.remove('disabledButton')

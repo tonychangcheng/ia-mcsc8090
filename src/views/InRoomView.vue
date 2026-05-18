@@ -176,17 +176,17 @@ export default {
       return templates[this.userCount]
     },
     teamBuildingPhase: function () {
-      if (this.userCount < 5) return '玩家数量不足'
+      if (this.userCount < 4) return '玩家数量不足'
       if (this.userCount > 10) return '玩家数量过多，请重开房间'
       let teamBuildingPhases = [
         '', '', '', '', 
-        '2 3 2 3',
-        '3 2 3 4 3',
-        '3 2 3 4 🧙‍♂️3',
-        '3 2 3 🧙‍♂️4 🧙‍♂️3',
-        '4 3 🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
-        '4 3 🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
-        '4 3 🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4'
+        '2  3  2  3',
+        '3  2  3  4  3',
+        '3  2  3  4  🧙‍♂️3',
+        '3  2  3  🧙‍♂️4 🧙‍♂️3',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4',
+        '4  3  🧙‍♂️4✌ 🧙‍♂️5✌ 🧙‍♂️4'
       ];
       // let teamBuildingPhases = ['', '', '', '', '', '2 3 2 3 3', '2 3 4 3 4', '2 3 3 4(Protected Quest) 4', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5', '3 4 4 5(Protected Quest) 5']
       return teamBuildingPhases[this.userCount]
@@ -384,7 +384,7 @@ export default {
           }
           //deal with no button
           let ul = this.userRole
-          if ((ul === 'Morgan le Fey' || ul === 'Blind Hunter' || ul === 'Archduke' || ul === 'Troublemaker' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
+          if ((ul === 'Morgan le Fey' || ul === 'Blind Hunter' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
             document.getElementById('nobutton').classList.remove('disabledButton')
           } else {
             document.getElementById('nobutton').classList.add('disabledButton')
