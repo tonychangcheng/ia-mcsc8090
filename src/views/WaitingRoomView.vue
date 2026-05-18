@@ -67,9 +67,9 @@ export default {
         '教士、1忠臣、摩根勒菲、盲眼杀手',
         '教士、1忠臣、摩根勒菲、盲眼杀手、1爪牙',
         '教士、捣乱者、公爵、摩根勒菲、盲眼杀手、1爪牙',
-        '教士、学徒、公爵、摩根勒菲、盲眼杀手、2爪牙',
+        '教士、侍从、公爵、摩根勒菲、盲眼杀手、2爪牙',
         '教士、捣乱者、公爵、1忠臣、摩根勒菲、盲眼杀手、2爪牙',
-        '教士、学徒、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙',
+        '教士、侍从、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙',
         '教士、捣乱者、公爵、大公、1忠臣、摩根勒菲、盲眼杀手、3爪牙'
       ];
       // let templates = ['', '', '', '', '', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 1 Loyal Servant of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 2 Loyal Servants of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, Troublemaker, 2 Loyal Servants of Arther', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
