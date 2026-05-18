@@ -384,7 +384,7 @@ export default {
           }
           //deal with no button
           let ul = this.userRole
-          if ((ul === 'Morgan le Fey' || ul === 'Blind Hunter' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
+          if ((ul === 'Morgan le Fey' || ul === 'Blind Hunter' || ul === 'Youth' || ul === 'Minion of Mordred') || re['roomfurtherstatus'] === 'build') {
             document.getElementById('nobutton').classList.remove('disabledButton')
           } else {
             document.getElementById('nobutton').classList.add('disabledButton')
