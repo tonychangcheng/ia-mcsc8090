@@ -126,7 +126,7 @@ export default {
   name: 'InRoomView',
   data () {
     return {
-      emojis: ['🟦', '🧙‍♂️', '🛡️', '🔪', '😈', '🟧',],
+      emojis: ['忠', '爵', '公', '侍', '教', '爪', '莫', '盲'],
       summaryText: '你的角色（点击以展示）',
       roomId: '',
       userId: '',
