@@ -39,7 +39,12 @@
           <div class="subtitle">{{ summaryText }}</div>
         </summary>
         <div>{{ chineseRoleName }}</div>
-        <img :src="`${userRole}.png`" style="height: 400px; margin: 10px 0;" />
+        <img
+          :src="roleImagePrimary"
+          @error="onRoleImageError"
+          :alt="chineseRoleName || 'role image'"
+          style="height: 400px; margin: 10px 0;"
+        />
         <div class="subtitle">{{ roleUserSee }}</div>
         <div>{{ userSeeString }}</div>
       </details>
@@ -168,7 +173,7 @@ export default {
         '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧1爪牙',
         '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧2爪牙',
         '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧2爪牙',
-        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦大公：「最終任務」中，邪惡方揭露身份後，可以改變一個玩家一隻手的指向、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧3爪牙',
+        '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、🟦大公：「最終任務」中，邪惡方揭露身份後，可以改變一個玩家一隻手的指向、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧3爪牙',
         '🟦教士：知道第一位領袖的陣營、🟦侍从：拿到魔法指示物要出任務失敗牌、🟦公爵：「最終任務」中可以指定一位玩家放下一隻手、🟦大公：「最終任務」中，邪惡方揭露身份後，可以改變一個玩家一隻手的指向、🟦1忠臣、😈摩根勒菲：不受「魔法指示物」效果影響，還是可以出任務失敗牌、🔪盲眼杀手：在「最終任務」跳出來指認兩位正義方玩家、🟧3爪牙'
       ];
       // let templates = ['', '', '', '', '', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 1 Loyal Servant of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, 2 Loyal Servants of Arther', 'Cleric, Duke, Morgan le Fey, Blind Hunter, Troublemaker, 2 Loyal Servants of Arther', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 3 Loyal Servants of Arther (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther  (Lady of the Lake is recommended)', 'Cleric, Duke, Archduke, Morgan le Fey, Blind Hunter, 4 Loyal Servants of Arther, Minion of Mordred (Lady of the Lake is recommended)']
@@ -207,6 +212,14 @@ export default {
     },
     server () {
       return this.$store.state.server
+    },
+    roleImagePrimary () {
+      if (!this.userRole) return '';
+      return `${this.userRole}${this.userId}.png`;
+    },
+    roleImageFallback () {
+      if (!this.userRole) return '';
+      return `${this.userRole}.png`;
     },
   },
   methods: {
@@ -402,6 +415,13 @@ export default {
           this.token = res.data.token
           //console.log(this.token)
         })
+    },
+    onRoleImageError (e) {
+      const fallback = this.roleImageFallback;
+      if (!fallback) return;
+      // avoid infinite loop if fallback also fails
+      if (e.target.getAttribute('src') === fallback) return;
+      e.target.setAttribute('src', fallback);
     },
   },
   mounted: function () {
